@@ -11,12 +11,27 @@
             </li>
             <li>
                 <a href="{{route('admin.users')}}">
-                    <i class="fa fa-user"></i> <span>Manage Users</span>
+                    <i class="fa fa-user"></i> <span>Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.countries')}}">
+                    <i class="fa fa-flag"></i> <span>Countries</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('leagues.index')}}">
+                    <i class="fa fa-trophy"></i> <span>Leagues</span>
+                </a>
+            </li>
+              <li>
+                <a href="{{route('teams.index')}}">
+                    <i class="fa fa-users"></i> <span>Teams</span>
                 </a>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-lock"></i> <span>Roles and permissions</span>
+                    <i class="fa fa-lock"></i> <span>Roles and Permissions</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>

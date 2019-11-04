@@ -124,9 +124,6 @@
     <script src="{{ asset('Custom/js/jquery.validate.js') }}"></script>
     <!-- Toastr -->
     <script src="{{ asset('Custom/js/toastr/toastr.min599c.js?v4.0.2') }}"></script>
-    <!-- Alertify -->
-    <script src="{{ asset('Custom/js/alertify/alertify599c.js?v4.0.2') }}"></script>
-    <script src="{{ asset('Custom/Plugin/alertify.min599c.js?v4.0.2') }}"></script>
     <!-- jquery Datatables-->
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 

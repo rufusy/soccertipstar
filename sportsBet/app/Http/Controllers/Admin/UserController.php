@@ -62,7 +62,6 @@
                 $siteUser['userRoles'] = $userRoles;
                 return $siteUser;
             });
-
             // Return the result to jquery datatables
             if(request()->ajax())
             {
@@ -218,7 +217,7 @@
                     'email' => $user->email
                 ];
 
-                event(new NewUserRegisteredEvent($newUserMailedData));
+                //event(new NewUserRegisteredEvent($newUserMailedData));
             }
 
             return $this->return_output('flash', 'success', $success_message, 'admin/users', '200');

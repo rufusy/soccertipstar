@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -29,11 +30,29 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['middleware' => ['role:administrator']], function() {
         Route::get('admin/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
 
+
         Route::get('admin/users', 'Admin\UserController@index')->name('admin.users');
         Route::get('admin/create-user', 'Admin\UserController@create')->name('admin.createUser');
         Route::get('admin/edit-user/{user_id}', 'Admin\UserController@edit')->name('admin.editUser');
         Route::post('admin/save-user', 'Admin\UserController@saveUser')->name('admin.saveUser');
         Route::post('admin/delete-user', 'Admin\UserController@delete')->name('admin.deleteUser');
+
+
+        Route::get('admin/countries', 'Admin\CountryController@index')->name('admin.countries');
+        Route::get('admin/edit-country/{country_id}', 'Admin\CountryController@edit')->name('admin.editCountry');
+        Route::post('admin/save-country', 'Admin\CountryController@saveCountry')->name('admin.saveCountry');
+        Route::post('admin/delete-country', 'Admin\CountryController@delete')->name('admin.deleteCountry');
+        Route::get('admin/countries/get-data', 'Admin\CountryController@getData')->name('countries.getData');
+
+
+        Route::get('admin/leagues', 'Admin\LeagueController@index')->name('leagues.index');
+        Route::get('admin/leagues/edit', 'Admin\LeagueController@edit')->name('leagues.edit');
+        Route::post('admin/leagues/store', 'Admin\LeagueController@store')->name('leagues.store');
+        Route::post('admin/leagues/delete', 'Admin\LeagueController@delete')->name('leagues.delete');
+        Route::get('admin/leagues/get-data', 'Admin\LeagueController@getData')->name('leagues.getData');
+
+
+        Route::get('admin/teams', 'Admin\TeamController@index')->name('teams.index');
     });
 });
 
