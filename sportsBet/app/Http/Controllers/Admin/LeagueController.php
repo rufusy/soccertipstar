@@ -100,18 +100,21 @@
         {
             $league_id = $request->league_id;
 
-            $data = request()->validate([
-                'name' => 'required|string|max:255',
-                'country' => 'required'
-            ]);
-
             if($league_id)
             {
+                $data = request()->validate([
+                    'name' => 'required|string|max:255',
+                    'country' => 'required'
+                ]);
                 $league = League::find($league_id);
                 $success_message = 'League updated successfully';
             }
             else
             {
+                $data = request()->validate([
+                    'name' => 'required|string|max:255|unique:leagues',
+                    'country' => 'required'
+                ]);
                 $league = new League();
                 $success_message = 'League added successfully';
             }
@@ -153,7 +156,28 @@
          */
         public function getData(Request $request)
         {
+            $id = $request->league_id;
             $leagues = League::all();
             return response()->json($leagues);
+        }
+
+
+         /**
+         * getLeagues 
+         *
+         * Get leagues under country
+         * 
+         * @param  mixed $request
+         *
+         * @return void
+         */
+        public function getLeaguesUnderCountry(Request $request)
+        {
+            $countryId = $request->countryId;
+            if(!empty($countryId))
+            {   
+                $leagues = League::where('country_id', $countryId)->get();
+                return response()->json($leagues);
+            }
         }
     }

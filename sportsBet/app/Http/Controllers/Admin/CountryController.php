@@ -72,17 +72,19 @@
         {
             $country_id = $request->country_id;
 
-            $data = request()->validate([
-                'name' => 'required|string|max:255|unique:countries'
-            ]);
-
             if($country_id)
             {
+                $data = request()->validate([
+                    'name' => 'required|string|max:255'
+                ]);
                 $country = Country::findOrFail($country_id);
                 $success_message = 'Country updated successfully';
             }
             else
             {
+                $data = request()->validate([
+                    'name' => 'required|string|max:255|unique:countries'
+                ]);
                 $country = new Country();
                 $success_message = 'Country added successfully';
             }
@@ -136,4 +138,5 @@
             $countries = Country::all();
             return response()->json($countries);
         }
+
     }
