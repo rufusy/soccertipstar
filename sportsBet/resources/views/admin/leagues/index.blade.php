@@ -166,8 +166,7 @@
         /* Create league */
         $('#create-new-league').click(function() {
             $('#saveBtn').val("create-league");
-            $('#country-id').val('');
-            $('#league-id').val('');
+            $('#league_id').val('');
             $('#league-form').trigger("reset");
             $('#league-modal-heading').html("Add New League");
             $('#league-modal').modal('show');
