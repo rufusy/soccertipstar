@@ -50,9 +50,13 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('admin/leagues/store', 'Admin\LeagueController@store')->name('leagues.store');
         Route::post('admin/leagues/delete', 'Admin\LeagueController@delete')->name('leagues.delete');
         Route::get('admin/leagues/get-data', 'Admin\LeagueController@getData')->name('leagues.getData');
+        Route::get('admin/leagues/get-leagues-under-country', 'Admin\LeagueController@getLeaguesUnderCountry')->name('leagues.leagueCountry');
 
 
         Route::get('admin/teams', 'Admin\TeamController@index')->name('teams.index');
+        Route::get('admin/teams/edit', 'Admin\TeamController@edit')->name('teams.edit');
+        Route::post('admin/teams/store', 'Admin\TeamController@store')->name('teams.store');
+        Route::post('admin/teams/delete', 'Admin\TeamController@delete')->name('teams.delete');
     });
 });
 
