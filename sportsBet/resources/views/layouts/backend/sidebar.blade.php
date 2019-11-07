@@ -24,9 +24,14 @@
                     <i class="fa fa-trophy"></i> <span>Leagues</span>
                 </a>
             </li>
-              <li>
+            <li>
                 <a href="{{route('teams.index')}}">
                     <i class="fa fa-users"></i> <span>Teams</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('odds.index')}}">
+                    <i class="fa fa-bar-chart"></i> <span>Odds</span>
                 </a>
             </li>
             <li class="treeview">

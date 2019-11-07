@@ -57,6 +57,13 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('admin/teams/edit', 'Admin\TeamController@edit')->name('teams.edit');
         Route::post('admin/teams/store', 'Admin\TeamController@store')->name('teams.store');
         Route::post('admin/teams/delete', 'Admin\TeamController@delete')->name('teams.delete');
+
+        
+        Route::get('admin/odds', 'Admin\OddController@index')->name('odds.index');
+        Route::get('admin/odds/edit', 'Admin\OddController@edit')->name('odds.edit');
+        Route::post('admin/odds/store', 'Admin\OddController@store')->name('odds.store');
+        Route::post('admin/odds/delete', 'Admin\OddController@delete')->name('odds.delete');
+
     });
 });
 
