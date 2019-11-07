@@ -66,7 +66,7 @@
                         <div class="register-box-body">
                             <form action="" method="post" id="team-form" name="team-form">
 
-                                <div id="errorDiv"></div>
+    	                        <div class="alert alert-danger" style="display:none"></div>
 
                                 <input type="hidden" name="team_id" id="team_id">
 
@@ -219,6 +219,8 @@
         $('#team_id').val('');
         $('#team-modal-heading').html("Add Team");
         $('#team-modal').modal('show');
+        $('.alert-danger').html('');
+        $('.alert-danger').hide();
     });   
 
         /* Edit team */
@@ -233,6 +235,8 @@
                     $('#team-modal-heading').html("Edit Team");
                     $('#saveBtn').val("edit-team");
                     $('#team-modal').modal('show');
+                    $('.alert-danger').html('');
+                    $('.alert-danger').hide();
                     $('#team_id').val(data.id);
                     $('#name').val(data.name); 
   
@@ -261,16 +265,28 @@
                 type: "POST",
                 dataType: 'json',
                 success: function (data) {
-                    $('#team-form').trigger("reset");
-                    $(".leagueSelectOptions").remove();
-                    $('#team-modal').modal('hide');
-                    // deselect all elements 
-                    document.getElementById('country').selectedIndex = "-1"; 
-                    document.getElementById('league').selectedIndex = "-1"; 
-                    var teamsTable = $('#teams-table').DataTable();
-                    teamsTable.draw();                },
+                    if(data.errors)
+                  	{
+                  		$('.alert-danger').html('');
+                  		$.each(data.errors, function(key, value){
+                  			$('.alert-danger').show();
+                  			$('.alert-danger').append('<li>'+value+'</li>');
+                  		});
+                  	}
+                    else
+                    {
+                        $('#team-form').trigger("reset");
+                        $(".leagueSelectOptions").remove();
+                        $('#team-modal').modal('hide');
+                        // deselect all elements 
+                        document.getElementById('country').selectedIndex = "-1"; 
+                        document.getElementById('league').selectedIndex = "-1"; 
+                        $('#teams-table').DataTable().draw();
+                        toastr.success(data.success);
+                    }
+                },
                 error: function (data) {
-                    $('#errorDiv').append(data);
+                    console.log('Error:', data);                
                 }
             });
         }); 
@@ -284,16 +300,22 @@
                     type: "POST",
                     url: "{{ route('teams.delete') }}",
                     data: {team_id:team_id},
-                    success: function (data) {
-                        var teamsTable = $('#teams-table').DataTable();
-                        teamsTable.draw(); 
+                    success: function (data) { 
+                        $('#teams-table').DataTable().draw();
+                        if(data.success)
+                  	    {
+                            toastr.success(data.success);
+                        }
+                        if(data.errors)
+                        {
+                            toastr.success(data.errors);
+                        }
                     },
-                    error: function (errors) {
-                        console.log('Error:', errors);
+                    error: function (data) {
+                        console.log('Error:', data);
                     }
                 });
             }
         });
-
 </script>
 @endsection

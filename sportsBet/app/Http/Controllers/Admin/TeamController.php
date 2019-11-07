@@ -107,25 +107,36 @@
 
             if($team_id)
             {
-                $data = request()->validate([
-                    'name' => 'required|string|max:255',
-                    'league' => 'required'
-                ]);
                 $team = Team::find($team_id);
                 $success_message = 'Team updated successfully';
+
+                $validation_rules = [
+                    'name' => 'required|string|max:255|unique:teams,name,'.$team->id,
+                    'league' => 'required'
+                ];
+               
             }
             else
             {
-                $data = request()->validate([
+                $validation_rules = [
                     'name' => 'required|string|max:255|unique:teams',
                     'league' => 'required'
-                ]);
+                ];
                 $team = new Team();
                 $success_message = 'Team added successfully';
             }
-            $team->name = $data['name'];
-            $team->league_id = $data['league'];
+
+            $validator = Validator::make($request->all(), $validation_rules);
+
+            if ($validator->fails()) 
+            {
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            }
+
+            $team->name = $request->input('name');
+            $team->league_id = $request->input('league');
             $team->save();
+
             return response()->json(['success' => $success_message]);
         }
 
@@ -143,11 +154,11 @@
             if(!empty($id))
             {   
                 Team::find($id)->delete();
-                return response()->json(['success'=>'Team deleted']);
+                return response()->json(['success'=>'Team deleted successfully']);
             }
             else 
             {
-                return response()->json(['error'=>'Team not deleted']);
+                return response()->json(['errors'=>'Team not deleted']);
             } 
         }
 

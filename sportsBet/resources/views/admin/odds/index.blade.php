@@ -238,6 +238,6 @@
                 });
             }
         });
-
+        
 </script>
 @endsection
