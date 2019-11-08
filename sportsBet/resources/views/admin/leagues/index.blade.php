@@ -65,7 +65,7 @@
                         <div class="register-box-body">
                             <form action="" method="post" id="league-form" name="league-form">
 
-                                <div id="errorDiv"></div>
+    	                        <div class="alert alert-danger" style="display:none"></div>
 
                                 <input type="hidden" name="league_id" id="league_id">
 
@@ -170,6 +170,8 @@
             $('#league-form').trigger("reset");
             $('#league-modal-heading').html("Add New League");
             $('#league-modal').modal('show');
+            $('.alert-danger').html('');
+            $('.alert-danger').hide();
         });
 
         /* Edit league */
@@ -184,9 +186,10 @@
                     $('#league-modal-heading').html("Edit League");
                     $('#saveBtn').val("edit-league");
                     $('#league-modal').modal('show');
+                    $('.alert-danger').html('');
+                    $('.alert-danger').hide();
                     $('#league_id').val(data.id);
                     $('#name').val(data.name);   
-
                     // Set the league country in the select element
                     const leagueCountry = countries.find(country=>country.id === data.country_id);
                     document.getElementById('country').value=leagueCountry.id;
@@ -206,14 +209,26 @@
                 type: "POST",
                 dataType: 'json',
                 success: function (data) {
-                    $('#league-form').trigger("reset");
-                    $('#league-modal').modal('hide');
-                    // deselect all elements 
-                    document.getElementById('country').selectedIndex = "-1"; 
-                    var leaguesTable = $('#leagues-table').DataTable();
-                    leaguesTable.draw();                },
+                    if(data.errors)
+                    {
+                        $('.alert-danger').html('');
+                  		$.each(data.errors, function(key, value){
+                  			$('.alert-danger').show();
+                  			$('.alert-danger').append('<li>'+value+'</li>');
+                  		});
+                    }
+                    else
+                    {
+                        $('#league-form').trigger("reset");
+                        $('#league-modal').modal('hide');
+                        // deselect all elements 
+                        document.getElementById('country').selectedIndex = "-1"; 
+                        $('#leagues-table').DataTable().draw();
+                        toastr.success(data.success);
+                    }
+                },
                 error: function (data) {
-                    $('#errorDiv').append(data);
+                    console.log('Error:', data);
                 }
             });
         }); 
@@ -227,8 +242,15 @@
                     url: "{{ route('leagues.delete') }}",
                     data: {league_id:league_id},
                     success: function (data) {
-                        var leaguesTable = $('#leagues-table').DataTable();
-                        leaguesTable.draw();
+                        $('#leagues-table').DataTable().draw();
+                        if(data.success)
+                  	    {
+                            toastr.success(data.success);
+                        }
+                        if(data.errors)
+                        {
+                            toastr.error(data.errors);
+                        }
                     },
                     error: function (errors) {
                         console.log('Error:', errors);

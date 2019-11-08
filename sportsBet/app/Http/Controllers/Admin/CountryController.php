@@ -74,24 +74,34 @@
 
             if($country_id)
             {
-                $data = request()->validate([
-                    'name' => 'required|string|max:255'
-                ]);
                 $country = Country::findOrFail($country_id);
                 $success_message = 'Country updated successfully';
+
+                $validation_rules = [
+                    'name' => 'required|string|max:255|unique:countries,name,'.$country->id,
+                ];
             }
             else
             {
-                $data = request()->validate([
-                    'name' => 'required|string|max:255|unique:countries'
-                ]);
                 $country = new Country();
                 $success_message = 'Country added successfully';
+
+                $validation_rules = [
+                    'name' => 'required|string|max:255|unique:countries'
+                ];
+            
             }
 
-            $country->name = $data['name'];
+            $validator = Validator::make($request->all(), $validation_rules);
+
+            if ($validator->fails()) 
+            {
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            }
+
+            $country->name = $request->input('name');
             $country->save();
-            //Session::flash('success', $success_message);
+
             return response()->json(['success' => $success_message]);
         }
 
@@ -121,7 +131,7 @@
             }
             else 
             {
-                return response()->json(['error'=>'Country not deleted']);
+                return response()->json(['errors'=>'Country not deleted']);
             }            
         }
 

@@ -229,7 +229,7 @@
                         }
                         if(data.errors)
                         {
-                            toastr.success(data.errors);
+                            toastr.error(data.errors);
                         }
                     },
                     error: function (data) {

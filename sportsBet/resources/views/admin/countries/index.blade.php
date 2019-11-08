@@ -63,7 +63,7 @@
                     <div class="modal-body">
                         <div class="register-box-body">
                             <form action="" method="post" id="country-form" name="country-form">
-                                <div id="errorDiv"></div>
+    	                        <div class="alert alert-danger" style="display:none"></div>
                                 <input type="hidden" name="country_id" id="country_id">
 
                                 <div class="form-group has-feedback">
@@ -100,7 +100,7 @@
 
 @section('javascript')
 <script type="text/javascript">
-
+    $(document).ready(function(){
         var countriesTable = $('#countries-table').DataTable({
             processing: true,
             serverSide: true,
@@ -130,6 +130,7 @@
             ],
             order: [[0, 'desc']]
         }); 
+    });
 
         /* Create country */
         $('#create-new-country').click(function() {
@@ -138,6 +139,8 @@
             $('#country-form').trigger("reset");
             $('#countries-modal-heading').html("Add New Country");
             $('#countries-modal').modal('show');
+            $('.alert-danger').html('');
+            $('.alert-danger').hide();
         });
 
         /* Edit country */
@@ -147,6 +150,8 @@
                 $('#countries-modal-heading').html("Edit Country");
                 $('#saveBtn').val("edit-country");
                 $('#countries-modal').modal('show');
+                $('.alert-danger').html('');
+                $('.alert-danger').hide();
                 $('#country_id').val(data.id);
                 $('#name').val(data.name);
             })
@@ -161,12 +166,24 @@
                 type: "POST",
                 dataType: 'json',
                 success: function (data) {
-                    $('#country-form').trigger("reset");
-                    $('#countries-modal').modal('hide');
-                    countriesTable.draw();
+                    if(data.errors)
+                  	{
+                  		$('.alert-danger').html('');
+                  		$.each(data.errors, function(key, value){
+                  			$('.alert-danger').show();
+                  			$('.alert-danger').append('<li>'+value+'</li>');
+                  		});
+                  	}
+                    else
+                    {
+                        $('#country-form').trigger("reset");
+                        $('#countries-modal').modal('hide');
+                        $('#countries-table').DataTable().draw();                        
+                        toastr.success(data.success);
+                    }
                 },
                 error: function (data) {
-                    $('#errorDiv').append(data);
+                    console.log('Error:', data);
                 }
             });
         }); 
@@ -180,7 +197,15 @@
                     url: "{{ route('admin.deleteCountry') }}",
                     data: {country_id:country_id},
                     success: function (data) {
-                        countriesTable.draw();
+                        $('#countries-table').DataTable().draw();                        
+                        if(data.success)
+                  	    {
+                            toastr.success(data.success);
+                        }
+                        if(data.errors)
+                        {
+                            toastr.error(data.errors);
+                        }
                     },
                     error: function (data) {
                         console.log('Error:', data);

@@ -102,25 +102,36 @@
 
             if($league_id)
             {
-                $data = request()->validate([
-                    'name' => 'required|string|max:255',
-                    'country' => 'required'
-                ]);
                 $league = League::find($league_id);
                 $success_message = 'League updated successfully';
+
+                $validation_rules = [
+                    'name' => 'required|string|max:255|unique:leagues,name,'.$league->id,
+                    'country' => 'required'
+                ];
             }
             else
             {
-                $data = request()->validate([
-                    'name' => 'required|string|max:255|unique:leagues',
-                    'country' => 'required'
-                ]);
                 $league = new League();
                 $success_message = 'League added successfully';
+
+                $validation_rules = [
+                    'name' => 'required|string|max:255|unique:leagues',
+                    'country' => 'required'
+                ];
             }
-            $league->name = $data['name'];
-            $league->country_id = $data['country'];
+
+            $validator = Validator::make($request->all(), $validation_rules);
+
+            if ($validator->fails()) 
+            {
+                return response()->json(['errors'=>$validator->errors()->all()]);
+            }
+
+            $league->name = $request->input('name');
+            $league->country_id = $request->input('country');
             $league->save();
+            
             return response()->json(['success' => $success_message]);
         }
 
@@ -142,7 +153,7 @@
             }
             else 
             {
-                return response()->json(['error'=>'League not deleted']);
+                return response()->json(['errors'=>'League not deleted']);
             } 
         }
 
