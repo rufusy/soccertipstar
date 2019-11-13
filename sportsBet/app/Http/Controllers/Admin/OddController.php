@@ -148,4 +148,19 @@
                 return response()->json(['errors'=>'Odd not deleted successfully']);
             } 
         }
+
+
+        /**
+         * getData
+         *
+         * @param  mixed $request
+         *
+         * @return void
+         */
+        public function getData(Request $request)
+        {
+            $odds = Odd::all();
+            return response()->json($odds);
+        }
+
     }

@@ -10,6 +10,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('matches.index')}}">
+                    <i class="fa fa-soccer-ball-o"></i> <span>Matches</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.users')}}">
                     <i class="fa fa-user"></i> <span>Users</span>
                 </a>

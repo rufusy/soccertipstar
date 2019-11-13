@@ -162,4 +162,23 @@
             } 
         }
 
+      
+        /**
+         * getTeamsUnderLeague
+         *
+         * @param  mixed $request
+         *
+         * @return void
+         */
+        public function getTeamsUnderLeague(Request $request)
+        {
+            $LeagueId = $request->LeagueId;
+            if(!empty($LeagueId))
+            {   
+                $teams = Team::where('league_id', $LeagueId)->get();
+                return response()->json($teams);
+            }
+        }
+
+
     }

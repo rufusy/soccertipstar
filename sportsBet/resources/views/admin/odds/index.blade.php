@@ -10,7 +10,7 @@
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-bar-chart"></i>Odds</a></li>
+            <li><a href="#"><i class="fa fa-bar-chart"></i>Matches</a></li>
             <li class="active">Dashboard</li>
         </ol>
     </section>

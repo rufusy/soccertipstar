@@ -23,11 +23,9 @@
     <!-- Ionicons -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('AdminLTE/bower_components/Ionicons/css/ionicons.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/AdminLTE.min.css') }}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-     folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/skins/_all-skins.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/select2/dist/css/select2.min.css') }}">
     <!-- Morris chart -->
     <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/morris.js/morris.css') }}">
     <!-- jvectormap -->
@@ -42,11 +40,21 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-    
+    <!-- Datetime picker -->
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('AdminLTE/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+        
+    <!-- Below css files are not part of the AdminLTE template-->    
     <link rel="stylesheet" href="{{ asset('Custom/css/toastr/toastr.min599c.css?v4.0.2') }}">
     <link rel="stylesheet" href="{{ asset('Custom/css/alertify/alertify.min599c.css?v4.0.2') }}">
-
     <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- AdminLTE template css -->
+    <!-- Theme style -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/AdminLTE.min.css') }}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+     folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/skins/_all-skins.min.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,6 +105,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('AdminLTE/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
     <!-- Morris.js charts -->
     <script src="{{ asset('AdminLTE/bower_components/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('AdminLTE/bower_components/morris.js/morris.min.js') }}"></script>
@@ -110,6 +120,8 @@
     <!-- daterangepicker -->
     <script src="{{ asset('AdminLTE/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <!--datetimepicker-->
+    <script src="{{ asset('AdminLTE/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- datepicker -->
     <script src="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     <!-- Bootstrap WYSIHTML5 -->
