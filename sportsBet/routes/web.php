@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 
         Route::get('admin/matches', 'Admin\MatchController@index')->name('matches.index');
+        Route::get('admin/matches/edit', 'Admin\MatchController@edit')->name('matches.edit');
         Route::post('admin/matches/store', 'Admin\MatchController@store')->name('matches.store');
         Route::post('admin/matches/delete', 'Admin\MatchController@delete')->name('matches.delete');
 

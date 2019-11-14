@@ -18,7 +18,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="box">
                     <div class="box-header">
                         <div class="row">
@@ -39,6 +39,7 @@
                                     <th>Game</th>
                                     <th>Odd Type</th>
                                     <th>Outcome</th>
+                                    <th>Tag</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -71,7 +72,7 @@
 
                                 <input type="hidden" name="match_id" id="match_id">
 
-                                 <div class="form-group">
+                                 <div class="form-group new-match-fields">
                                     <label>Match Date and Time</label>
                                     <div class='input-group date' id='match-date'>
                                         <span class="input-group-addon">
@@ -81,33 +82,33 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group new-match-fields">
                                     <label>Home League</label>
                                     <select class="form-control" name="home-league" id="home-league">
                                         <option value="" id="">Home Team League</option>
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group new-match-fields">
                                     <label>Home Team</label>
                                     <select class="form-control" name="home-team" id="home-team">
                                     </select>
                                 </div>
 
-                                 <div class="form-group">
+                                 <div class="form-group new-match-fields">
                                     <label>Away League</label>
                                     <select class="form-control" name="away-league" id="away-league">
                                         <option value="" id="">Away Team League</option>
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group new-match-fields">
                                     <label>Away Team</label>
                                     <select class="form-control" name="away-team" id="away-team">
                                     </select>
                                 </div>
 
-                                 <div class="form-group">
+                                 <div class="form-group new-match-fields">
                                     <label>Odd Type(s)</label>
                                     <select class="form-control select2" id="odds" name="odds[]" multiple="multiple" data-placeholder="Select odds"
                                             style="width: 100%;">
@@ -120,6 +121,14 @@
                                         <option value="In progress" id="">In progress</option>
                                         <option value="Lost" id="">Lost</option>
                                         <option value="Won" id="">Won</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Match Tag</label>
+                                    <select class="form-control" name="tag" id="tag">
+                                        <option value="Free" id="">Free</option>
+                                        <option value="Premium" id="">Premium</option>
                                     </select>
                                 </div>
 
@@ -191,6 +200,10 @@
                 {
                     data:'outcome',
                     name:'outcome'
+                },
+                {
+                    data:'tag',
+                    name:'tag'
                 },
                 {
                     data:'action',
@@ -284,29 +297,30 @@
             $('#matches-modal').modal('show');
             $('.alert-danger').html('');
             $('.alert-danger').hide();
+            $('.new-match-fields').show();
             $(".homeTeamSelectOptions").remove();
             $(".awayTeamSelectOptions").remove();
         });
 
-        /* Edit league */
-        $('body').on('click', '.editLeague', function () {
-            var league_id = $(this).data('id');         
+        /* Edit Match */
+        $('body').on('click', '.editMatch', function () {
+            var match_id = $(this).data('id');         
             $.ajax({
-                data: {league_id:league_id},
-                url: "{{route('leagues.edit')}}",
+                data: {match_id:match_id},
+                url: "{{route('matches.edit')}}",
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {
-                    $('#league-modal-heading').html("Edit League");
-                    $('#saveBtn').val("edit-league");
-                    $('#league-modal').modal('show');
+                    $('#matches-modal-heading').html("Edit Match");
+                    $('#saveBtn').val("edit-match");
+                    $('#matches-modal').modal('show');
+                    $('.new-match-fields').hide();
                     $('.alert-danger').html('');
                     $('.alert-danger').hide();
-                    $('#league_id').val(data.id);
-                    $('#name').val(data.name);   
+                    $('#match_id').val(data.id);
                     // Set the league country in the select element
-                    const leagueCountry = countries.find(country=>country.id === data.country_id);
-                    document.getElementById('country').value=leagueCountry.id;
+                    {{-- const leagueCountry = countries.find(country=>country.id === data.country_id);
+                    document.getElementById('country').value=leagueCountry.id; --}}
                 },
                 error: function (data) {
                     $('#errorDiv').append(data);

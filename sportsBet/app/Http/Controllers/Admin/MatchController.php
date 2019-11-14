@@ -91,6 +91,20 @@
             return view('admin.matches.index');  
         }
 
+        /**
+         * edit
+         *
+         * @param  mixed $request
+         *
+         * @return void
+         */
+        public function edit(Request $request)
+        {
+            $id = $request->match_id;
+            $match = Match::find($id);
+            return response()->json($match);
+        }
+
 
         /**
          * store
@@ -105,7 +119,13 @@
 
             if($match_id)
             {
+                $match = Match::find($match_id);
+                $success_message = 'League updated successfully';
 
+                $validation_rules = [
+                    'outcome' => 'required|string',
+                    'tag' => 'required|string'
+                ];
             }
 
             else
@@ -118,7 +138,8 @@
                     'home-team' => 'required|integer',
                     'away-team' => 'required|integer|different:home-team',
                     'odds' => 'required',
-                    'outcome' => 'required|string'
+                    'outcome' => 'required|string',
+                    'tag' => 'required|string'
                 ];
 
             }
@@ -130,21 +151,30 @@
                 return response()->json(['errors'=>$validator->errors()->all()]);
             }
 
-            $match_date = Carbon::parse($request->input('match-date'))->format('Y-m-d H:i:s');
-            
-            $odd_type = '';
-            $odds = $request->input('odds');
-            foreach($odds as $odd)
+            if($match_id)
             {
-                $odd_type .= $odd .',';
+                $match->outcome = $request->input('outcome');
+                $match->tag = $request->input('tag');  
             }
-            $odd_type = substr($odd_type, 0, -1);
+            else
+            {
+                $match_date = Carbon::parse($request->input('match-date'))->format('Y-m-d H:i:s');
+                
+                $odd_type = '';
+                $odds = $request->input('odds');
+                foreach($odds as $odd)
+                {
+                    $odd_type .= $odd .',';
+                }
+                $odd_type = substr($odd_type, 0, -1);
 
-            $match->home_team = $request->input('home-team');
-            $match->away_team = $request->input('away-team');
-            $match->odd_type = $odd_type;
-            $match->match_date = $match_date;
-            $match->outcome = $request->input('outcome');
+                $match->home_team = $request->input('home-team');
+                $match->away_team = $request->input('away-team');
+                $match->odd_type = $odd_type;
+                $match->match_date = $match_date;
+                $match->outcome = $request->input('outcome');
+                $match->tag = $request->input('tag');
+            }
             $match->save();
 
             return response()->json(['success' => $success_message]);
