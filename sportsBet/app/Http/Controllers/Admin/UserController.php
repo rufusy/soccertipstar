@@ -217,7 +217,7 @@
                     'email' => $user->email
                 ];
 
-                //event(new NewUserRegisteredEvent($newUserMailedData));
+                event(new NewUserRegisteredEvent($newUserMailedData));
             }
 
             return $this->return_output('flash', 'success', $success_message, 'admin/users', '200');

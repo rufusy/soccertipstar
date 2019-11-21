@@ -100,6 +100,7 @@
         {
             $league_id = $request->league_id;
 
+            
             if($league_id)
             {
                 $league = League::find($league_id);
