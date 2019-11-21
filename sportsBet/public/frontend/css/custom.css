@@ -1,0 +1,209 @@
+/*----------------------------------------
+  scroll bar
+----------------------------------------*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #191970;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00bfff;
+  border-radius: 5px;
+}
+
+
+/*----------------------------------------
+  tabs
+----------------------------------------*/
+.tabbable-panel {
+  padding: 10px;
+}
+
+.tabbable-line>.nav-tabs {
+  text-align: center;
+  border-bottom: none !important;
+}
+
+.tabbable-line>.nav-tabs>li {
+  float: none;
+  display: inline-block;
+  zoom: 1;
+}
+
+.tabbable-line>.nav-tabs>li>a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+}
+
+.tabbable-line>.nav-tabs>li>a>i {
+  color: #a6a6a6;
+}
+
+.tabbable-line>.nav-tabs>li.open,
+.tabbable-line>.nav-tabs>li:hover {
+  border-bottom: 4px solid #00bfff;
+}
+
+.tabbable-line>.nav-tabs>li.open>a,
+.tabbable-line>.nav-tabs>li:hover>a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+
+.tabbable-line>.nav-tabs>li.open>a>i,
+.tabbable-line>.nav-tabs>li:hover>a>i {
+  color: #a6a6a6;
+}
+
+.tabbable-line>.nav-tabs>li.open .dropdown-menu,
+.tabbable-line>.nav-tabs>li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+
+.tabbable-line>.nav-tabs>li.active {
+  border-bottom: 4px solid #00bfff;
+  position: relative;
+}
+
+.tabbable-line>.nav-tabs>li.active>a {
+  border: 0;
+  color: #333333;
+}
+
+.tabbable-line>.nav-tabs>li.active>a>i {
+  color: #404040;
+}
+
+.tabbable-line>.tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.portlet .tabbable-line>.tab-content {
+  padding-bottom: 0;
+}
+
+
+/*----------------------------------------
+  tables
+----------------------------------------*/
+.table-fixed tbody {
+  height: 250px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+
+.table-fixed tr:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+.table-fixed tbody td,
+.table-fixed thead>tr>th {
+  float: left;
+}
+
+.table>thead>tr>th,
+.table>thead>tr>td {
+  font-size: .9em;
+  font-weight: 400;
+  border-bottom: 0;
+  letter-spacing: 1px;
+  vertical-align: top;
+  padding: 8px;
+  background: #191970;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+
+/*--------------------------------*/
+
+/*  14.Signup Area
+/*--------------------------------*/
+.signup-form, .signin-form, .email-form, .reset-form
+{
+  padding: 20px;
+  /* box-shadow: 0 8px 6px -6px #00bfff; */
+  -webkit-box-shadow: 0px 0px 47px 1px rgba(0,191,255,0.4); 
+  box-shadow: 0px 0px 47px 1px rgba(0,191,255,0.4);
+} 
+
+
+.signup-form .error, .signup-form .invalid-feedback,
+.signin-form .invalid-feedback,
+.email-form .invalid-feedback,
+.reset-form .invalid-feedback
+{
+  color: red;
+  font-weight: 600;
+}
+
+.signup-form input[type="text"], .signup-form input[type="email"], .signup-form input[type="password"], .signup-form  select, 
+.signin-form input[type="text"], .signin-form input[type="email"], .signin-form input[type="password"], .signin-form  select, 
+.email-form input[type="text"], .email-form input[type="email"], .email-form input[type="password"], .email-form  select, 
+.reset-form input[type="text"], .reset-form input[type="email"], .reset-form input[type="password"], .reset-form  select 
+{
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  color: #444;
+  height: 40px;
+  margin-bottom: 16px;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.signup-form button[type="submit"],
+.signin-form button[type="submit"],
+.email-form button[type="submit"],
+.reset-form button[type="submit"] {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: 1px solid #ccc;
+  color: #444;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  padding: 12px 30px;
+  /* text-transform: uppercase; */
+  transition: all 0.3s ease 0s;
+  border-radius: 30px;
+}
+
+.signup-form button[type="submit"]:hover, .signup-form button[type="submit"]:active,
+.signin-form button[type="submit"]:hover, .signin-form button[type="submit"]:active,
+.email-form button[type="submit"]:hover, .email-form button[type="submit"]:active,
+.reset-form button[type="submit"]:hover, .reset-form button[type="submit"]:active {
+  color: #fff;
+  border: 1px solid #00bfff;
+  background: #00bfff;
+}
+
+
+
+
+
+
+
+
+
+
