@@ -5,6 +5,11 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li>
+                <a href="{{route('home')}}">
+                    <i class="fa fa-home"></i> <span>Home</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{route('admin.dashboard')}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
@@ -37,6 +42,11 @@
             <li>
                 <a href="{{route('odds.index')}}">
                     <i class="fa fa-bar-chart"></i> <span>Odds</span>
+                </a>
+            </li>
+             <li>
+                <a href="{{route('plans.index')}}">
+                    <i class="fa fa-bar-chart"></i> <span>Plans</span>
                 </a>
             </li>
             <li class="treeview">

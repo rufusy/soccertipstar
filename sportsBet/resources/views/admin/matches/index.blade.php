@@ -10,11 +10,10 @@
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-soccer-ball-o"></i>Matches</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li class="active"><a href="#"><i class="fa fa-soccer-ball-o"></i>Matches</a></li>
         </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">

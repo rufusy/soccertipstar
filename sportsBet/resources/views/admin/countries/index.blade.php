@@ -10,8 +10,8 @@
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-flag"></i>Countries</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li class="active"><a href="#"><i class="fa fa-flag"></i>Countries</a></li>
         </ol>
     </section>
 

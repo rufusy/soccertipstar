@@ -66,6 +66,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('admin/matches/store', 'Admin\MatchController@store')->name('matches.store');
         Route::post('admin/matches/delete', 'Admin\MatchController@delete')->name('matches.delete');
 
+        Route::get('admin/plans', 'Admin\PlanController@index')->name('plans.index');
+        Route::get('admin/plans/edit', 'Admin\PlanController@edit')->name('plans.edit');
+        Route::post('admin/plans/store', 'Admin\PlanController@store')->name('plans.store');
+        Route::post('admin/plans/delete', 'Admin\PlanController@delete')->name('plans.delete');
+
     });
 });
 
