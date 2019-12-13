@@ -34,7 +34,13 @@
     <link href="{{ asset('frontend/lib/venobox/venobox.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/lib/jquery-steps/jquery.steps.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/lib/toastr/toastr.min599c.css?v4.0.2') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/country-picker-flags/css/countrySelect.min.css') }}" rel="stylesheet">
+    
+    {{-- <link rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css" type="text/css" />
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css" type="text/css" />
+    --}}
 
+    
     <!-- Nivo Slider Theme -->
     <link href="{{ asset('frontend/css/nivo-slider-theme.css') }}" rel="stylesheet">
 
@@ -80,10 +86,14 @@
 <script src="{{ asset('frontend/lib/jquery.pwstrength/jquery.pwstrength.js') }}"></script>
 <script src="{{ asset('frontend/lib/card/dist/card.js') }}"></script>
 <script src="{{ asset('frontend/lib/toastr/toastr.min599c.js?v4.0.2') }}"></script>
+<script src="{{ asset('frontend/lib/country-picker-flags/js/countrySelect.min.js') }}"></script>
+
 <!-- template js file -->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
 <!-- stick footer to bottom of page when page content is short-->
 <script src="{{ asset('frontend/js/footerBottom.js') }}"></script>
+<!-- 2Checkout JavaScript library -->
+<script src="https://www.2checkout.com/checkout/api/2co.min.js"></script>
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -108,6 +118,9 @@
 
 <!-- Contact Form JavaScript File -->
 <script src="{{ asset('frontend/contactform/contactform.js') }}"></script>
+
+{{-- <script src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script> 
+<script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>  --}}
 
 @yield('javascript');
 

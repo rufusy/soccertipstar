@@ -15,18 +15,20 @@ class contactMessageEmail extends Mailable implements ShouldQueue
     public $subject;
     public $email;
     public $bodyMessage;
+    public $contact_us_email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $subject, $email, $message)
+    public function __construct($message_info)
     {
-        $this->name = $name;
-        $this->subject = $subject;
-        $this->email = $email;
-        $this->bodyMessage = $message;
+        $this->name = $message_info['name'];
+        $this->subject = $message_info['subject'];
+        $this->email = $message_info['email'];
+        $this->bodyMessage = $message_info['message'];
+        $this->contact_us_email =  env('CONTACT_US_EMAIL');
     }
 
     /**
@@ -40,7 +42,7 @@ class contactMessageEmail extends Mailable implements ShouldQueue
         
         return $this->subject($this->subject)
                     ->from($this->email)
-                    ->to('test-4aadc6@inbox.mailtrap.io')
+                    ->to($this->contact_us_email)
                     ->view('emails.contactMessage');
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Session;
 use Redirect;
+use Carbon\Carbon;
+
 
 class Controller extends BaseController
 {
@@ -15,6 +17,17 @@ class Controller extends BaseController
 
    
     //commmon function to display the error both in terminal and browser
+    /**
+     * return_output
+     *
+     * @param  mixed $type
+     * @param  mixed $status_title
+     * @param  mixed $message
+     * @param  mixed $redirect_url
+     * @param  mixed $status_code
+     *
+     * @return void
+     */
     public function return_output($type, $status_title, $message, $redirect_url, $status_code = '')
     {
         // echo 'test';exit;
@@ -48,4 +61,28 @@ class Controller extends BaseController
         }
         
     }
+
+
+    /**
+     * user_subscription
+     *
+     * @return void
+     */
+    public function user_subscription()
+    {
+        /**
+         * Users registered on the website always have an associated subscription.
+         * We check whether their subscription is still active or not.
+         * If subscription is active they can view premium tips.
+         */
+        $user = auth()->user();
+        if($user)
+        {
+            $subscription = app('rinvex.subscriptions.plan_subscription')::where('user_id', $user->id)->first();
+            $subscription_is_active = $user->subscribedTo($subscription->plan_id);
+            return $subscription_is_active;
+        }
+        return false;
+    }
+  
 }

@@ -28,19 +28,19 @@
                             id="navbar-example">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="active">
-                                    <a class="page-scroll" href="#">Home</a>
+                                    <a class="page-scroll" href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="#about">About</a>
+                                    <a class="page-scroll" href="{{ route('home') }}#about">About</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="#pricing">Pricing</a>
+                                    <a class="page-scroll" href="{{ route('home') }}#pricing">Pricing</a>
                                 </li>
                                 {{-- <li>
                                     <a class="page-scroll" href="#blog">Blog</a>
                                 </li> --}}
                                 <li>
-                                    <a class="page-scroll" href="#contact">Contact</a>
+                                    <a class="page-scroll" href="{{ route('home') }}#contact">Contact</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle"
@@ -48,9 +48,12 @@
                                     <ul class="dropdown-menu" role="menu">
                                         @guest
                                             <li><a href="{{ route('login') }}">Login</a></li>
-                                            <li><a href="#">Register</a></li>
+                                            <li><a href="{{ route('register') }}">Register</a></li>
                                         @else
-                                            <li><a href=#>Account</a></li>
+                                            @if (Auth::user()->hasRole('administrator'))
+                                                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                            @endif
+                                            <li><a href="{{ route('account.index') }}">Account</a></li>
                                             <li><a href="{{ route('logOut') }}">Logout</a></li>
                                         @endguest
                                     </ul>

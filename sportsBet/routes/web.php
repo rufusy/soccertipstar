@@ -17,17 +17,28 @@
 // });
 
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('checkUserEmailExists', 'HomeController@checkUserEmailExists')->name('checkUserEmailExists');
-Route::post('sendMessage','HomeController@sendMessage')->name('sendMessage');
-Route::post('signup', 'HomeController@signup')->name('signup');
+Route::get('/', 'Site\HomeController@index')->name('home');
+Route::post('sendMessage','Site\HomeController@sendMessage')->name('sendMessage');
+Route::get('getPlans', 'Site\HomeController@getPlans')->name('getPlans');
+
+/* Jquery form Validation */
+Route::get('checkUserEmailExists', 'Site\HomeController@checkUserEmailExists')->name('checkUserEmailExists');
+Route::get('checkUserPasswordMatches', 'Site\AccountController@checkUserPasswordMatches')->name('checkUserPasswordMatches');
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logOut');
 
 Route::group(['middleware' => 'auth'], function(){
 
+    Route::get('account', 'Site\AccountController@index')->name('account.index');
+    Route::post('account/update-profile', 'Site\AccountController@updateProfile')->name('account.updateProfile');
+    Route::post('account/update-password', 'Site\AccountController@updatePassword')->name('account.updatePassword');
+    Route::post('account/make-payment', 'Site\AccountController@makePayment')->name('account.makePayment');
+    Route::post('account/delete', 'Site\AccountController@delete')->name('account.delete');
+
+
     Route::group(['middleware' => ['role:administrator']], function() {
+
         Route::get('admin/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
 
         Route::get('admin/users', 'Admin\UserController@index')->name('admin.users');

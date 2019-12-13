@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\Role;
+use App\Profile;
+use Carbon\Carbon;
+use App\Http\Controllers\Site\CountryController;
+
+
 class RegisterController extends Controller
 {
     /*
@@ -28,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,12 +55,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],           
+            'country' => ['required', 'string', 'max:255'],
         ]);
     }
 
+    
     /**
      * Create a new user instance after a valid registration.
      *
@@ -63,10 +72,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $plan = app('rinvex.subscriptions.plan')->where('slug', 'basic')->first();
+  
+        $user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'plan' => $plan->id,
+            'country' => $data['country'],
         ]);
+    
+        $user->attachRole(Role::where('name', 'user')->first());
+
+        // Create a new subscription
+        $user->newSubscription('main', $plan);
+
+        return $user;
     }
 }

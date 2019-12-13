@@ -14,14 +14,6 @@
                             <p>
                                 To form a winning strategy to guarantee profits to all our clients.
                             </p>
-                            {{-- <div class="subs-feilds">
-                                <div class="suscribe-input">
-                                    <input type="email" class="email form-control width-80" id="sus_email"
-                                        placeholder="Email">
-                                    <button type="submit" id="sus_submit" class="add-btn width-20">Subscribe</button>
-                                    <div id="msg_Submit" class="h3 text-center hidden"></div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -68,33 +60,48 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- End Free Tips -->
+
                         <!--- Premium Tips -->
                         <div class="col-md-12" style="padding-top: 10px;">
                             <h4 class="sec-head ">Premium Tips</h4>
-                            <table class="table table-responsive table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th class="">Match</th>
-                                        <th class="">Odd(s)</th>
-                                        <th class="">Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($paidMatches as $paidMatch)
-                                    <tr>
-                                        <td class="">{{ $paidMatch->match_date }}</td>
-                                        <td class="">{{ $paidMatch->game }}</td>
-                                        <td class="">{{ $paidMatch->odd_type }}</td>
-                                        <td class="">{{ $paidMatch->outcome }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            @guest
+                                <div class="p-3 mb-2 bg-info text-center" style="padding-top: 20px; padding-bottom: 20px;">
+                                    <h4>Subscribe to get our premium betting tips.</h4>
+                                </div>
+                            @else
+                                @if($subscription_is_active)
+                                    <table class="table table-responsive table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th class="">Match</th>
+                                                <th class="">Odd(s)</th>
+                                                <th class="">Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($paidMatches as $paidMatch)
+                                            <tr>
+                                                <td class="">{{ $paidMatch->match_date }}</td>
+                                                <td class="">{{ $paidMatch->game }}</td>
+                                                <td class="">{{ $paidMatch->odd_type }}</td>
+                                                <td class="">{{ $paidMatch->outcome }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @else   
+                                    <div class="p-3 mb-2 bg-warning text-center" style="padding-top: 20px; padding-bottom: 20px;">
+                                        <h4>Your subscription has expired :( </h4>
+                                    </div>
+                                @endif
+                            @endguest
                         </div>
+                        <!-- End Premium Tips -->
 
                         <!--- Previous Tips -->
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="padding-top: 10px;">
                             <h4 class="sec-head ">Previous Tips</h4>
                             <table class="table table-responsive table-striped">
                                 <thead>
@@ -117,6 +124,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- End Previous Tips -->
                     </div>
                 </div>
             </div>
