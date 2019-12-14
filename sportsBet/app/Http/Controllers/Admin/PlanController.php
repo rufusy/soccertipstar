@@ -105,7 +105,7 @@
                     'name' => 'required|string|max:255',
                     'description' => 'nullable|string|max:10000',
                     'price' => 'required|numeric',
-                    'trial-days' => 'required|numeric',
+                    'invoice-days' => 'required|numeric',
                     'status' => 'required'
                 ]; 
             }
@@ -117,7 +117,7 @@
                     'name' => 'required|string|max:255',
                     'description' => 'nullable|string|max:10000',
                     'price' => 'required|numeric',
-                    'trial-days' => 'required|numeric',
+                    'invoice-days' => 'required|numeric',
                     'status' => 'required'
                 ]; 
             }
@@ -136,7 +136,7 @@
                 $plan->description = $request->input('description');
                 $plan->is_active = $request->input('status');
                 $plan->price = $request->input('price');
-                $plan->trial_period = $request->input('trial-days');
+                $plan->invoice_period = $request->input('invoice-days');
                 $plan->save();
             }
 
@@ -147,10 +147,8 @@
                     'is_active' => $request->input('status'),
                     'price' => $request->input('price'),
                     'signup_fee' => 0.00,
-                    'invoice_period' => 1,
-                    'invoice_interval' => 'month',
-                    'trial_period' => $request->input('trial-days'),
-                    'trial_interval' => 'day',
+                    'invoice_period' => $request->input('invoice-days'),
+                    'invoice_interval' => 'day',
                     'sort_order' => 1,
                     'currency' => 'USD',
                 ]);
@@ -172,12 +170,17 @@
             $id = $request->plan_id;
             if(!empty($id))
             {   
-                app('rinvex.subscriptions.plan')::find($id)->delete();
-                return response()->json(['success'=>'League deleted']);
+                $plan = app('rinvex.subscriptions.plan')::find($id);
+                if($plan->slug == 'basic')
+                {
+                    return response()->json(['errors'=>'A basic plan can not be deleted']);
+                }      
+                $plan->delete();
+                return response()->json(['success'=>'The plan deleted successfully']);
             }
             else 
             {
-                return response()->json(['errors'=>'League not deleted']);
+                return response()->json(['errors'=>'The plan not deleted']);
             } 
         }
     }

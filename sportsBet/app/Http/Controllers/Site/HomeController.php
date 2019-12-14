@@ -140,7 +140,8 @@ class HomeController extends Controller
      */
     public function getPlans()
     {
-        $plans = app('rinvex.subscriptions.plan')::all();
+        $plans = app('rinvex.subscriptions.plan')::where('is_active', 1)->get();
+        
         return response()->json($plans);
     }
 

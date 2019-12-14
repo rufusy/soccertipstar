@@ -11,14 +11,14 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li class="active"><a href="#"><i class="fa fa-trophy"></i>Plans</a></li>
+            <li class="active"><a href="#"><i class="fa fa-bar-chart"></i>Plans</a></li>
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="col-md-12 col-sm-12">
                 <div class="box">
                     <div class="box-header">
                         <div class="row">
@@ -41,7 +41,8 @@
                                     <th>Price</th>
                                     <th>Signup fee</th>
                                     <th>Currency</th>
-                                    <th>Trial days</th>
+                                    <th>Trial period days</th>
+                                    <th>Invoice period days</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -88,11 +89,11 @@
                                         id="price">
                                 </div>
                                  <div class="form-group has-feedback">
-                                    <label for="trial-days">Trial days:</label>
-                                    <input type="number" class="form-control" placeholder="Trial days Eg 7" name="trial-days"
-                                        id="trial-days">
+                                    <label for="invoice-days">Invoice days:</label>
+                                    <input type="number" class="form-control" placeholder="Invoice period days Eg 7" name="invoice-days"
+                                        id="invoice-days">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="plan-status">
                                     <label>Status</label>
                                     <div class="radio">
                                         <label>
@@ -181,6 +182,10 @@
                     name:'trial_period'
                 },
                 {
+                    data:'invoice_period',
+                    name:'invoice_period'
+                },
+                {
                     data:'action',
                     name:'action',
                     orderable: false,
@@ -199,6 +204,8 @@
         $('#plans-modal').modal('show');
         $('.alert-danger').html('');
         $('.alert-danger').hide();
+        $("#name").prop("readonly", false);
+        $("#plan-status").show();
     });
 
     /* Edit Plans */
@@ -210,24 +217,18 @@
             type: "GET",
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $('#plans-modal-heading').html("Edit Plan");
                 $('#plans-modal').modal('show');
                 $('.alert-danger').html('');
                 $('.alert-danger').hide();
                 $('#plan_id').val(data.id);
                 $('#name').val(data.name); 
+                data.slug == 'basic' ? $("#name").prop("readonly", true): $("#name").prop("readonly", false)
+                data.slug == 'basic' ? $("#plan-status").hide(): $("#plan-status").show()
                 $('#description').val(data.description);   
                 $('#price').val(data.price);
-                $('#trial-days').val(data.trial_period);
-                if(data.is_active === true)
-                {
-                    $("#active").prop("checked", true);
-                }
-                else
-                {
-                    $("#inactive").prop("checked", true);
-                }
+                $('#invoice-days').val(data.invoice_period);
+                data.is_active === true ? $("#active").prop("checked", true) : $("#inactive").prop("checked", true)
             },
             error: function (data) {
                 console.log('Error:', data);

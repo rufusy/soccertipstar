@@ -19,6 +19,11 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="personal-info">
                                 <h5><i class="fa fa-user"></i> Personal info:</h5>
+                                 <div class="bg-info info-discalaimer">
+                                        <p>
+                                            Get a 7 day-free trial window when you register an account with us
+                                        </p>
+                                    </div>
                                 <div class="form-group">
                                     <label for="first-name">First name:</label>
                                     <input type="text" class="form-control" name="first_name" id="first-name"

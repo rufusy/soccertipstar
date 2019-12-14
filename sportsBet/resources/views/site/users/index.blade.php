@@ -8,8 +8,7 @@
                 <img src="/storage/profile/basic-info.jpg" class="img-responsive img-circle">
             </div>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <p>Enter your name, username and primary email address. You can change your primary email address at any
-                    time.</p>
+                <p>Enter your name and renew your subscription when expired.</p>
                 <div style="margin-top: 50px;">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -30,7 +29,7 @@
                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#make-payment">Renew
                                 Subscription</button>
                             @else
-                            <p> Subscription valid untill: {{ $user['subscription_exp']}} </p>
+                            <p> Your subscription is valid untill: {{ $user['subscription_exp']}} </p>
                             @endif
                         </div>
                     </div>
@@ -255,12 +254,13 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        /* Fetch all plans */
+        /* Fetch all active plans */
         $.ajax({
             url: "{{route('getPlans')}}",
             type: "get",
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $.each(data, function (index, data) {
                     $("#plan").append($("<option></option>").attr("value", data.id).text(
                         data.name));
