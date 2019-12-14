@@ -214,7 +214,8 @@
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
                     'password' => $password,
-                    'email' => $user->email
+                    'email' => $user->email,
+                    'subject' => 'New account creation'
                 ];
 
                 event(new NewUserRegisteredEvent($newUserMailedData));

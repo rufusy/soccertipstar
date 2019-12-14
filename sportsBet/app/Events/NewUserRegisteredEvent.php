@@ -14,10 +14,8 @@ class NewUserRegisteredEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $first_name;
-    public $last_name;
-    public $password;
-    public $email;
+  
+    public $new_user;
     /**
      * Create a new event instance.
      *
@@ -25,10 +23,8 @@ class NewUserRegisteredEvent
      */
     public function __construct($newUserMailedData)
     {
-        $this->first_name = $newUserMailedData['first_name'];
-        $this->last_name = $newUserMailedData['last_name'];
-        $this->password = $newUserMailedData['password'];
-        $this->email = $newUserMailedData['email'];
+      
+        $this->new_user = $newUserMailedData;
     }
 
 }

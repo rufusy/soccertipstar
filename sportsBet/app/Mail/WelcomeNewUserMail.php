@@ -14,16 +14,17 @@ class WelcomeNewUserMail extends Mailable
     public $password;
     public $first_name;
     public $last_name;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($first_name, $last_name, $password)
+    public function __construct($new_user)
     {
-        $this->password = $password;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
+        $this->password = $new_user['password'];
+        $this->first_name = $new_user['first_name'];
+        $this->last_name = $new_user['last_name'];
     }
 
     /**

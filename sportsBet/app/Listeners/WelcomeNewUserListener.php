@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class WelcomeNewUserListener implements ShouldQueue
 {
+
     /**
      * Create the event listener.
      *
@@ -16,7 +17,6 @@ class WelcomeNewUserListener implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -29,6 +29,10 @@ class WelcomeNewUserListener implements ShouldQueue
     {
         sleep(10);
         // Send welcome email
-        Mail::to($event->email)->send(new WelcomeNewUserMail($event->first_name, $event->last_name, $event->password));
+        Mail::to($event->new_user['email'])
+                ->from(env('SUPPORT_EMAIL'))
+                ->subject($event->new_user['subject'])
+                ->send(new WelcomeNewUserMail($event->new_user));
+
     }
 }
