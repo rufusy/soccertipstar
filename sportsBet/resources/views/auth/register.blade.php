@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="row text-center">
-                        <p>By creating a Soccertipstar account, you agree to our<a href="#"> Terms of service</a>
+                        <p>By creating a Soccertipstar account, you agree to our<a href="{{ route('home') }}#about"> Terms of service</a>
                         </p>
                     </div>
                     <div class="row">

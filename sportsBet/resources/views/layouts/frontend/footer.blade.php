@@ -10,11 +10,10 @@
                                 <div class="footer-logo">
                                     <h2><span>soccer</span>tipstar</h2>
                                 </div>
-
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                    doloremque laudantium,
-                                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
-                                <div class="footer-icons">
+                                <p>
+                                	WE DON’T SELL FIXED MATCHES. DON’T LET ANY OTHER WEBSITE CLAIMING TO BE US SCAM YOU!
+                                </p>
+                                {{-- <div class="footer-icons">
                                     <ul>
                                         <li>
                                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -23,7 +22,7 @@
                                             <a href="#"><i class="fa fa-twitter"></i></a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -32,14 +31,9 @@
                         <div class="footer-content">
                             <div class="footer-head">
                                 <h4>information</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor.
-                                </p>
                                 <div class="footer-contacts">
-                                    <p><span>Tel:</span> +123 456 789</p>
-                                    <p><span>Email:</span> contact@example.com</p>
-                                    <p><span>Working Hours:</span> 9am-5pm</p>
+                                    <p><span>Tel:</span> +254 798455889</p>
+                                    <p><span>Email:</span> info@soccertipstar.com</p>
                                 </div>
                             </div>
                         </div>

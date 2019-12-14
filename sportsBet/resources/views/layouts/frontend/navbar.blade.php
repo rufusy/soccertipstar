@@ -31,16 +31,16 @@
                                     <a class="page-scroll" href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ route('home') }}#about">About</a>
-                                </li>
-                                <li>
                                     <a class="page-scroll" href="{{ route('home') }}#pricing">Pricing</a>
                                 </li>
-                                {{-- <li>
-                                    <a class="page-scroll" href="#blog">Blog</a>
-                                </li> --}}
+                                <li>
+                                    <a class="page-scroll" href="https://blog.soccertipstar.com">Blog</a>
+                                </li> 
                                 <li>
                                     <a class="page-scroll" href="{{ route('home') }}#contact">Contact</a>
+                                </li>
+                                 <li>
+                                    <a class="page-scroll" href="{{ route('home') }}#about">About</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle"
