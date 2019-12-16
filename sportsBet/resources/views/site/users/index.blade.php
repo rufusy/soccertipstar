@@ -351,7 +351,7 @@
             var ccNo =  $("#card-number").val();
             var cvv =  $("#card-cvc").val()
             var args = {
-                sellerId: "901416501",
+                sellerId: "{{env('2CHECKOUT_SELLER_ID')}}", 
                 publishableKey: "{{env('2CHECKOUT_PUBLISHABLE_KEY')}}",
                 ccNo: ccNo,
                 cvv: cvv,
@@ -493,7 +493,10 @@
 
         $(function () {
             // Pull in the public encryption key for our environment
-            TCO.loadPubKey('sandbox');
+            let checkout_env = "{{env('2CHECKOUT_ENVIROMENT')}}";
+      
+            TCO.loadPubKey(checkout_env); 
+
             $("#payment-form").submit(function (e) {
                 // Call our token request function
                 if($(this).valid()) 

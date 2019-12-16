@@ -32,7 +32,7 @@
                             <div class="footer-head">
                                 <h4>information</h4>
                                 <div class="footer-contacts">
-                                    <p><span>Tel:</span> +254 798455889</p>
+                                    <p><span>Tel:</span> +254 772928599</p>
                                     <p><span>Email:</span> info@soccertipstar.com</p>
                                 </div>
                             </div>

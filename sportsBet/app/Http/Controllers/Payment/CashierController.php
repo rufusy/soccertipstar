@@ -22,9 +22,10 @@
         {
             Twocheckout::privateKey(env('2CHECKOUT_PRIVATE_KEY'));
             Twocheckout::sellerId(env('2CHECKOUT_SELLER_ID'));
-            Twocheckout::sandbox(true);
-            Twocheckout::verifySSL(false);  // this is set to true by default
+            env('2CHECKOUT_ENVIROMENT') == 'production' ?  Twocheckout::sandbox(false) :  Twocheckout::sandbox(true);
+            env('2CHECKOUT_ENVIROMENT') == 'production' ?  Twocheckout::verifySSL(true) :  Twocheckout::verifySSL(false);
             
+
             try 
             {
                 $charge = Twocheckout_Charge::auth($paymentInfo);

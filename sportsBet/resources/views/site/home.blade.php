@@ -150,14 +150,12 @@
                 <div class="pri_table_list">
                     <h3>basic <br /> <span>$8 / 7 DAYS</span></h3>
                     <ol>
-                        <li class="check">Online system</li>
-                        <li class="check cross">Full access</li>
-                        <li class="check">Free apps</li>
-                        <li class="check">Multiple slider</li>
-                        <li class="check cross">Free domin</li>
-                        <li class="check cross">Support unlimited</li>
-                        <li class="check">Payment online</li>
-                        <li class="check cross">Cash back</li>
+                        <li class="check">Full access to our predictions</li>
+                        <li class="check">Five + Multibets daily</li>
+                        <li class="check">2+ MAX stake odd</li>
+                        <li class="check">Super singles</li>
+                        <li class="check">24/7 support </li>
+                        <li class="check">Secure online payment</li>
                     </ol>
                     <button class="signup-button">sign up now</button>
                 </div>
@@ -167,14 +165,12 @@
                     <span class="saleon">top sale</span>
                     <h3>standard <br /> <span>$14 / 14 DAYS</span></h3>
                     <ol>
-                        <li class="check">Online system</li>
-                        <li class="check">Full access</li>
-                        <li class="check">Free apps</li>
-                        <li class="check">Multiple slider</li>
-                        <li class="check cross">Free domin</li>
-                        <li class="check">Support unlimited</li>
-                        <li class="check">Payment online</li>
-                        <li class="check cross">Cash back</li>
+                        <li class="check">Full access to our predictions</li>
+                        <li class="check">Five + Multibets daily</li>
+                        <li class="check">2+ MAX stake odd</li>
+                        <li class="check">Super singles</li>
+                        <li class="check">24/7 support </li>
+                        <li class="check">Secure online payment</li>
                     </ol>
                     <button class="signup-button">sign up now</button>
                 </div>
@@ -183,14 +179,12 @@
                 <div class="pri_table_list">
                     <h3>premium <br /> <span>$19 / 30 DAYS</span></h3>
                     <ol>
-                        <li class="check">Online system</li>
-                        <li class="check">Full access</li>
-                        <li class="check">Free apps</li>
-                        <li class="check">Multiple slider</li>
-                        <li class="check">Free domin</li>
-                        <li class="check">Support unlimited</li>
-                        <li class="check">Payment online</li>
-                        <li class="check">Cash back</li>
+                        <li class="check">Full access to our predictions</li>
+                        <li class="check">Five + Multibets daily</li>
+                        <li class="check">2+ MAX stake odd</li>
+                        <li class="check">Super singles</li>
+                        <li class="check">24/7 support </li>
+                        <li class="check">Secure online payment</li>
                     </ol>
                     <button class="signup-button">sign up now</button>
                 </div>
@@ -219,7 +213,7 @@
                         <div class="single-icon">
                             <i class="fa fa-mobile"></i>
                             <p>
-                                Call: +254 798455889<br>
+                                Call: +254 772928599<br>
                             </p>
                         </div>
                     </div>
@@ -230,7 +224,7 @@
                         <div class="single-icon">
                             <i class="fa fa-whatsapp"></i>
                             <p>
-                                Message: +254 782293365<br>
+                                Message: +254 772928599<br>
                             </p>
                         </div>
                     </div>
