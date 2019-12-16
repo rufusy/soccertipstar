@@ -9,7 +9,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 use Rinvex\Subscriptions\Traits\HasSubscriptions;
 
 
-class User extends Authenticatable 
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use Notifiable;

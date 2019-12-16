@@ -11,24 +11,25 @@
 |
 */
 
-// Route::get('/', function () {
-    
-//     return view('home');
-// });
 
 
 Route::get('/', 'Site\HomeController@index')->name('home');
 Route::post('sendMessage','Site\HomeController@sendMessage')->name('sendMessage');
 Route::get('getPlans', 'Site\HomeController@getPlans')->name('getPlans');
 
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
+
 /* Jquery form Validation */
 Route::get('checkUserEmailExists', 'Site\HomeController@checkUserEmailExists')->name('checkUserEmailExists');
 Route::get('checkUserPasswordMatches', 'Site\AccountController@checkUserPasswordMatches')->name('checkUserPasswordMatches');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logOut');
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => ['auth','verified']], function(){
 
     Route::get('account', 'Site\AccountController@index')->name('account.index');
     Route::post('account/update-profile', 'Site\AccountController@updateProfile')->name('account.updateProfile');

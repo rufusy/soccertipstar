@@ -23,10 +23,10 @@
     use App\User;
     use App\Role;
     use App\Permission;
-    use App\Events\NewUserRegisteredEvent;
-    
+    use App\Mail\WelcomeNewUserMail;
 
     
+
     /**
      *  Class contain functions for admin
      *  @category   Class
@@ -210,7 +210,7 @@
             if(!$user_id)
             {
                 // Data to email new user
-                $newUserMailedData = [
+                $new_user = [
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
                     'password' => $password,
@@ -218,7 +218,9 @@
                     'subject' => 'New account creation'
                 ];
 
-                event(new NewUserRegisteredEvent($newUserMailedData));
+                //event(new NewUserRegisteredEvent($newUserMailedData));
+                Mail::send(new WelcomeNewUserMail($new_user));
+
             }
 
             return $this->return_output('flash', 'success', $success_message, 'admin/users', '200');

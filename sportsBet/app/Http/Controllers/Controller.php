@@ -6,6 +6,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
+
 use Session;
 use Redirect;
 use Carbon\Carbon;
@@ -78,8 +80,12 @@ class Controller extends BaseController
         $user = auth()->user();
         if($user)
         {
-            $subscription = app('rinvex.subscriptions.plan_subscription')::where('user_id', $user->id)->first();
-            $subscription_is_active = $user->subscribedTo($subscription->plan_id);
+            if (Auth::user()->hasRole('administrator'))
+                $subscription_is_active = true;
+            else{
+                $subscription = app('rinvex.subscriptions.plan_subscription')::where('user_id', $user->id)->first();
+                $subscription_is_active = $user->subscribedTo($subscription->plan_id);
+            }
             return $subscription_is_active;
         }
         return false;

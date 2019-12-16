@@ -17,6 +17,8 @@
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Mail;
     use Illuminate\Support\Facades\Hash;
+    use Illuminate\Support\Facades\Auth;
+
     use Carbon\Carbon;
 
 
@@ -48,23 +50,36 @@
         {
             $logged_in_user = auth()->user();
 
-            $subscription =  app('rinvex.subscriptions.plan_subscription')::where('user_id', $logged_in_user->id)
+            if (!Auth::user()->hasRole('administrator'))
+            {
+                $subscription =  app('rinvex.subscriptions.plan_subscription')::where('user_id', $logged_in_user->id)
                                                                             ->first();
-            $plan =  app('rinvex.subscriptions.plan')::find($subscription->plan_id);
+                $plan =  app('rinvex.subscriptions.plan')::find($subscription->plan_id);
+                $plan_name = $plan->name;
 
-            // Format subcription end date 18 January 2019 11:30 AM EAT
-            $ends_at = Carbon::parse($subscription->ends_at)->format('d F Y g:i A').' EAT';
+                // Format subcription end date 18 January 2019 11:30 AM EAT
+                $ends_at = Carbon::parse($subscription->ends_at)->format('d F Y g:i A').' EAT';
+
+                $role = 'user';
+            }
+            else {
+                $ends_at = 'Forever';
+                $plan_name = null;
+                $role = 'administrator';
+            }
 
             // check if subscription is active
             $subscription_is_active = $this->user_subscription();
 
+
             $user = [
                 'id' => $logged_in_user->id,
+                'role' => $role,
                 'name' => $logged_in_user->first_name.' '.$logged_in_user->last_name,
                 'first_name' => $logged_in_user->first_name,
                 'last_name' => $logged_in_user->last_name,
                 'email' => $logged_in_user->email,
-                'plan' => $plan->name,
+                'plan' => $plan_name,
                 'subscription_exp' => $ends_at,
                 'country' => $logged_in_user->country,
                 'subscription_is_active' => $subscription_is_active

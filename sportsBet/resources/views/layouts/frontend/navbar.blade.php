@@ -49,6 +49,7 @@
                                         @guest
                                             <li><a href="{{ route('login') }}">Login</a></li>
                                             <li><a href="{{ route('register') }}">Register</a></li>
+                                            
                                         @else
                                             @if (Auth::user()->hasRole('administrator'))
                                                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>

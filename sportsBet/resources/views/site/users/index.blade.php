@@ -18,21 +18,23 @@
                             <p>{{ $user['name'] }}</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <p style="font-weight: bold;">Plan </p>
+                    @if ($user['role'] == 'user')
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <p style="font-weight: bold;">Plan </p>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p>{{ $user['plan'] }}</p>
+                                @if (!$user['subscription_is_active'])
+                                <p> Your Subscription expired on {{ $user['subscription_exp']}} </p>
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#make-payment">Renew
+                                    Subscription</button>
+                                @else
+                                <p> Your subscription is valid untill: {{ $user['subscription_exp']}} </p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <p>{{ $user['plan'] }}</p>
-                            @if (!$user['subscription_is_active'])
-                            <p> Your Subscription expired on {{ $user['subscription_exp']}} </p>
-                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#make-payment">Renew
-                                Subscription</button>
-                            @else
-                            <p> Your subscription is valid untill: {{ $user['subscription_exp']}} </p>
-                            @endif
-                        </div>
-                    </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <p style="font-weight: bold;">Country </p>
@@ -84,16 +86,17 @@
                 </div>
             </div>
         </div>
-
-        <div class="row" style="padding-bottom: 50px; padding-top: 50px;" >
-            <div class="">
-                <form action="{{ route('account.delete' )}}" id="delete_account_form" method="POST">
-                    @csrf
-                    <input name="id" type="hidden" value="{{$user['id']}}">
-                    <button class="btn btn-danger btn-smcenter pull-right" id="delete_account">Delete account </button>
-                </form>
+        @if ($user['role'] == 'user')
+            <div class="row" style="padding-bottom: 50px; padding-top: 50px;" >
+                <div class="">
+                    <form action="{{ route('account.delete' )}}" id="delete_account_form" method="POST">
+                        @csrf
+                        <input name="id" type="hidden" value="{{$user['id']}}">
+                        <button class="btn btn-danger btn-smcenter pull-right" id="delete_account">Delete account </button>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>
 

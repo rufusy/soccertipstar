@@ -7,13 +7,16 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class WelcomeNewUserMail extends Mailable
+
+class WelcomeNewUserMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $support_email;
+    public $user_email;
+    public $subject;
     public $password;
-    public $first_name;
-    public $last_name;
+    public $name;
 
     /**
      * Create a new message instance.
@@ -22,9 +25,12 @@ class WelcomeNewUserMail extends Mailable
      */
     public function __construct($new_user)
     {
+        $this->support_email = env('SUPPORT_EMAIL');
+
+        $this->subject = $new_user['subject'];
+        $this->user_email = $new_user['email'];
         $this->password = $new_user['password'];
-        $this->first_name = $new_user['first_name'];
-        $this->last_name = $new_user['last_name'];
+        $this->name = $new_user['first_name'].' '.$new_user['last_name'];
     }
 
     /**
@@ -34,6 +40,12 @@ class WelcomeNewUserMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.new-welcome');
+        sleep(10);
+
+        return $this->subject($this->subject)
+                    ->from($this->support_email)
+                    ->to($this->user_email)
+                    ->view('emails.new-welcome');
+
     }
 }
