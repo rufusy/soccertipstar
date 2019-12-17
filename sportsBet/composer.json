@@ -12,6 +12,7 @@
         "2checkout/2checkout-php": "^0.3.1",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "rinvex/laravel-subscriptions": "2.1.1",

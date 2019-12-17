@@ -19,8 +19,8 @@ class CreatePlanSubscriptionsTable extends Migration
             $table->morphs('user');
             $table->integer('plan_id')->unsigned();
             $table->string('slug');
-            $table->{$this->jsonable()}('name');
-            $table->{$this->jsonable()}('description')->nullable();
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->dateTime('trial_ends_at')->nullable();
             $table->dateTime('starts_at')->nullable();
             $table->dateTime('ends_at')->nullable();

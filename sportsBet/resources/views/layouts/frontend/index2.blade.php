@@ -14,8 +14,8 @@
     <meta content="" name="description">
 
     <!-- Favicons -->
-    <link href="{{ asset('frontend/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('frontend/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('frontend/img/favicon_2.png') }}" rel="icon">
+    {{-- <link href="{{ asset('frontend/img/apple-touch-icon.png') }}" rel="apple-touch-icon"> --}}
 
     <!-- Google Fonts -->
     <link

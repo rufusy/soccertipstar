@@ -19,8 +19,8 @@ class CreatePlanFeaturesTable extends Migration
             $table->increments('id');
             $table->integer('plan_id')->unsigned();
             $table->string('slug');
-            $table->{$this->jsonable()}('name');
-            $table->{$this->jsonable()}('description')->nullable();
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->string('value');
             $table->smallInteger('resettable_period')->unsigned()->default(0);
             $table->string('resettable_interval')->default('month');
