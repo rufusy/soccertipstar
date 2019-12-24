@@ -7,8 +7,10 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+     <!-- Favicons -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
-    <title>{{ config('app.name', 'soccertipstar') }}</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -16,52 +18,56 @@
     <!-- Styles -->
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/font-awesome/css/font-awesome.min.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/Ionicons/css/ionicons.min.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/Ionicons/css/ionicons.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/select2/dist/css/select2.min.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/select2/dist/css/select2.min.css') }}">
     <!-- Morris chart -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/bower_components/morris.js/morris.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/AdminLTE/bower_components/morris.js/morris.css') }}">
     <!-- jvectormap -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/jvectormap/jquery-jvectormap.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/jvectormap/jquery-jvectormap.css') }}">
     <!-- Date Picker -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     <!-- Daterange picker -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+        href="{{ asset('backend/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+        href="{{ asset('backend/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
     <!-- Datetime picker -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('AdminLTE/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
-        
-    <!-- Below css files are not part of the AdminLTE template-->    
-    <link rel="stylesheet" href="{{ asset('Custom/css/toastr/toastr.min599c.css?v4.0.2') }}">
-    <link rel="stylesheet" href="{{ asset('Custom/css/alertify/alertify.min599c.css?v4.0.2') }}">
-    <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+        href="{{ asset('backend/AdminLTE/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+    <!-- Toastr v4.0.2 -->
+    <link rel="stylesheet" href="{{ asset('backend/lib/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/ToastrAwesome.css') }}">
+    <!-- Datatables-->
+    <link rel="stylesheet" href="{{ asset('backend/lib/DataTables/datatables.min.css') }}">
+    <!-- Datatables Checkboxes 1.2.11 -->
+    <link rel="stylesheet" href="{{ asset('backend/lib/DatatablesCheckboxes/css/dataTables.checkboxes.css') }}">
+    <!-- Datatables rowgroup-->
+    <link rel="stylesheet" href="{{ asset('backend/lib/DataTables/RowGroup-1.1.1/css/rowGroup.dataTables.css') }}">
 
-    <!-- AdminLTE template css -->
+
     <!-- Theme style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/AdminLTE/dist/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('AdminLTE/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/AdminLTE/dist/css/skins/_all-skins.min.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -91,82 +97,93 @@
                     <div class="pull-right hidden-xs">
                         <b>Version</b> 2.4.0
                     </div>
-                    <strong>Copyright &copy; 2018-2019 <a href="https://soccertipstar.com/terms">soccertipstar</a>.</strong> All rights
+                    <strong>Copyright &copy; 2018-2019 <a
+                            href="https://soccertipstar.com/terms">soccertipstar</a>.</strong> All rights
                     reserved.
                 </footer>
             </main>
         </div>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <!-- jQuery 3 -->
-    <script src="{{ asset('AdminLTE/bower_components/jquery/dist/jquery.min.js') }}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('AdminLTE/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="{{ asset('AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <!-- Select2 -->
-    <script src="{{ asset('AdminLTE/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-    <!-- Morris.js charts -->
-    <script src="{{ asset('AdminLTE/bower_components/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('AdminLTE/bower_components/morris.js/morris.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ asset('AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
-    <!-- jvectormap -->
-    <script src="{{ asset('AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-    <script src="{{ asset('AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="{{ asset('AdminLTE/bower_components/jquery-knob/dist/jquery.knob.min.js') }}"></script>
-    <!-- daterangepicker -->
-    <script src="{{ asset('AdminLTE/bower_components/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    <!--datetimepicker-->
-    <script src="{{ asset('AdminLTE/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
-    <!-- datepicker -->
-    <script src="{{ asset('AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-    <!-- Bootstrap WYSIHTML5 -->
-    <script src="{{ asset('AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
-    <!-- Slimscroll -->
-    <script src="{{ asset('AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <!-- FastClick -->
-    <script src="{{ asset('AdminLTE/bower_components/fastclick/lib/fastclick.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
-    <!-- Jquery Validate plugin-->
-    <script src="{{ asset('Custom/js/jquery.validate.js') }}"></script>
-    <!-- Toastr -->
-    <script src="{{ asset('Custom/js/toastr/toastr.min599c.js?v4.0.2') }}"></script>
-    <!-- jquery Datatables-->
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+</body>
 
-    <script>
-        $.ajaxSetup({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+<script src="{{ asset('js/app.js') }}"></script>
+<!-- jQuery 3 -->
+<script src="{{ asset('backend/AdminLTE/bower_components/jquery/dist/jquery.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('backend/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{ asset('backend/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('backend/AdminLTE/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+<!-- Morris.js charts -->
+<script src="{{ asset('backend/AdminLTE/bower_components/raphael/raphael.min.js') }}"></script>
+<script src="{{ asset('backend/AdminLTE/bower_components/morris.js/morris.min.js') }}"></script>
+<!-- Sparkline -->
+<script src="{{ asset('backend/AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
+<!-- jvectormap -->
+<script src="{{ asset('backend/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+<script src="{{ asset('backend/AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ asset('backend/AdminLTE/bower_components/jquery-knob/dist/jquery.knob.min.js') }}"></script>
+<!-- daterangepicker -->
+<script src="{{ asset('backend/AdminLTE/bower_components/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('backend/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<!--datetimepicker-->
+<script
+    src="{{ asset('backend/AdminLTE/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}">
+</script>
+<!-- datepicker -->
+<script src="{{ asset('backend/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}">
+</script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{ asset('backend/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<!-- Slimscroll -->
+<script src="{{ asset('backend/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ asset('backend/AdminLTE/bower_components/fastclick/lib/fastclick.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('backend/AdminLTE/dist/js/adminlte.min.js') }}"></script>
+<!-- Jquery Validate plugin-->
+<script src="{{ asset('backend/lib/validate/jquery.validate.js') }}"></script>
+<!-- Toastr v4.0.2 -->
+<script src="{{ asset('backend/lib/toastr/toastr.min.js') }}"></script>
+<!-- Datatables-->
+<script src="{{ asset('backend/lib/DataTables/datatables.min.js') }}"></script>
+<!-- Datatables Checkboxes 1.2.11 -->
+<script src="{{ asset('backend/lib/DatatablesCheckboxes/js/dataTables.checkboxes.min.js') }}"></script>
+<!-- Datatables rowgroup-->
+<script src="{{ asset('backend/lib/DataTables/RowGroup-1.1.1/js/dataTables.rowGroup.min.js') }}"></script>
+
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    (function (document, window, $) {
+        'use strict';
+
+        var Site = window.Site;
+        $(document).ready(function () {
+
+            /* Toastr messages */
+            toastr.options.closeButton = true;
+            toastr.options.timeOut = 5000;
+            @if(session()->has('success'))
+                toastr.success("{{ session('success') }}");
+            @endif
+            @if(session()->has('error'))
+                toastr.error("{{ session('error') }}");
+            @endif
+            @if(session()->has('info'))
+                toastr.info("{{ session('info') }}");
+            @endif
         });
-        (function(document, window, $) {
-            'use strict';
+    })(document, window, jQuery);
 
-            var Site = window.Site;
-            $(document).ready(function() {
-                //Site.run();
+</script>
 
-                /* Toastr messages */
-                toastr.options.closeButton = true;
-                toastr.options.timeOut = 5000;
-                @if (session()->has('success'))
-                    toastr.success("{{ session('success') }}");
-                @endif
-                @if (session()->has('error'))
-                    toastr.error("{{ session('error') }}");
-                @endif
-                @if (session()->has('info'))
-                    toastr.info("{{ session('info') }}");
-                @endif
-            });
-        })(document, window, jQuery);
-    </script>
+@yield('javascript')
 
-    @yield('javascript')
-    </body>
 </html>
-

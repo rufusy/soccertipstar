@@ -19,6 +19,21 @@
                     <i class="fa fa-soccer-ball-o"></i> <span>Matches</span>
                 </a>
             </li>
+             <li>
+                <a href="{{route('multibets.index')}}">
+                    <i class="fa fa-soccer-ball-o"></i> <span>Multibets</span>
+                </a>
+            </li>
+             <li>
+                <a href="{{route('supersingles.index')}}">
+                    <i class="fa fa-soccer-ball-o"></i> <span>Supersingles</span>
+                </a>
+            </li>
+             <li>
+                <a href="{{route('maxstake.index')}}">
+                    <i class="fa fa-soccer-ball-o"></i> <span>Maxstake</span>
+                </a>
+            </li>
             <li>
                 <a href="{{route('admin.users')}}">
                     <i class="fa fa-user"></i> <span>Users</span>

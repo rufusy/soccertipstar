@@ -77,12 +77,26 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::get('admin/matches/edit', 'Admin\MatchController@edit')->name('matches.edit');
         Route::post('admin/matches/store', 'Admin\MatchController@store')->name('matches.store');
         Route::post('admin/matches/delete', 'Admin\MatchController@delete')->name('matches.delete');
+        Route::post('admin/matches/delete-selected', 'Admin\MatchController@deleteSelected')->name('matches.deleteSelected');
+
+        Route::get('admin/multibets', 'Admin\MultibetController@index')->name('multibets.index');
+        Route::post('admin/multibets/store', 'Admin\MultibetController@store')->name('multibet.store');
+        Route::post('admin/multibets/delete', 'Admin\MultibetController@delete')->name('multibet.delete');
+        Route::post('admin/multibets/delete-selected', 'Admin\MultibetController@deleteSelected')->name('multibet.deleteSelected');
+
+        Route::get('admin/supersingles', 'Admin\SupersingleController@index')->name('supersingles.index');
+        Route::post('admin/supersingles/store', 'Admin\SupersingleController@store')->name('supersingle.store');
+        Route::post('admin/supersingles/delete', 'Admin\SupersingleController@delete')->name('supersingle.delete');
+
+        Route::get('admin/maxstake', 'Admin\MaxstakeController@index')->name('maxstake.index');
+        Route::post('admin/maxstake/store', 'Admin\MaxstakeController@store')->name('maxstake.store');
+        Route::post('admin/maxstake/delete', 'Admin\MaxstakeController@delete')->name('maxstake.delete');
+        Route::post('admin/maxstake/delete-selected', 'Admin\MaxstakeController@deleteSelected')->name('maxstake.deleteSelected');
 
         Route::get('admin/plans', 'Admin\PlanController@index')->name('plans.index');
         Route::get('admin/plans/edit', 'Admin\PlanController@edit')->name('plans.edit');
         Route::post('admin/plans/store', 'Admin\PlanController@store')->name('plans.store');
         Route::post('admin/plans/delete', 'Admin\PlanController@delete')->name('plans.delete');
-
     });
 });
 

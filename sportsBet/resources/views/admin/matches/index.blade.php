@@ -21,8 +21,20 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="row">
-                            <div class="col-xs-2">
-                                <a class="btn btn-primary btn-flat" href="javascript:void(0)" id="create-new-match">Add Match</a>
+                            <div class="col-md-1 col-sm-1 col-lg-1">
+                                <a class="btn btn-primary btn-flat btn-block" href="javascript:void(0)" id="create-new-match"><i class="fa fa-plus"></i> Match</a>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-lg-1">
+                                <button class="btn btn-primary btn-flat btn-block" id="multibet"><i class="fa fa-plus"></i> Multibet</button>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-lg-1">
+                                <button class="btn btn-primary btn-flat btn-block" id="supersingle"><i class="fa fa-plus"></i> Supersingle</button>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-lg-1">
+                                <button class="btn btn-primary btn-flat btn-block" id="maxstake"><i class="fa fa-plus"></i> Maxstake</button>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-lg-1">
+                                <button class="btn btn-danger btn-flat btn-block" id="delete-selected"><i class="fa fa-trash"></i> Delete</button>
                             </div>
                         </div>
                     </div>
@@ -32,6 +44,7 @@
                         <table id="matches-table" class="table table-bordered table-striped data-table">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Id</th>
                                     <th>No</th>
                                     <th>Match Day</th>
@@ -54,7 +67,8 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
-                                                                                                         
+
+        
         <div class="modal fade" id="matches-modal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -161,6 +175,8 @@
 @section('javascript')
 <script type="text/javascript">
 
+    var matchesTable;
+
     $(document).ready(function(){
         //Date time picker
         $('#match-date').datetimepicker();
@@ -168,11 +184,27 @@
         //Initialize Select2 Elements
         $('.select2').select2()
 
-        var matchesTable = $('#matches-table').DataTable({
+        matchesTable = $('#matches-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{{ route('matches.index') }}",
+            order: [[1, 'desc']],  
+            'columnDefs': [
+                {
+                    'targets': 0,
+                    'checkboxes': {
+                    'selectRow': true
+                    }
+                }
+            ],
+            'select': {
+                'style': 'multi'
+            },
             columns: [
+                {
+                    data:'id',
+                    name:'id',
+                },
                 {
                     data:'id', 
                     name:'id', 
@@ -210,10 +242,10 @@
                     orderable: false,
                     searchable: false
                 } 
-            ],
-            order: [[0, 'desc']]
+            ]
         }); 
 
+     
         /* Fetch all leagues */
         $.ajax({
             url: "{{route('leagues.getData')}}",
@@ -238,6 +270,52 @@
                 });
             }
         });
+    });
+
+    function ajaxCall(url)
+    {
+        var matches = [];
+        var rows_selected = matchesTable.column(0).checkboxes.selected();
+        // Iterate over all selected checkboxes
+        $.each(rows_selected, function(index, rowId){
+            matches.push(rowId);
+        });
+        $.ajax({
+            data:{matches:matches},
+            url:url,
+            type:'POST',
+            daataType:'json',
+            success: function(data){
+                matchesTable.draw();
+                data.success ? toastr.success(data.success) : toastr.error(data.errors);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    }
+
+    /*
+    * Handle multibet, supersingle, maxstake create button
+    */
+    $('#multibet').click(function(){
+        var url = "{{route('multibet.store')}}";
+        ajaxCall(url);
+    });
+    $('#supersingle').click(function(){
+        var url = "{{route('supersingle.store')}}";
+        ajaxCall(url);
+    });
+    $('#maxstake').click(function(){
+        var url = "{{route('maxstake.store')}}";
+        ajaxCall(url);
+    });
+    $('#delete-selected').click(function(){
+        var url = "{{route('matches.deleteSelected')}}";
+        if(confirm("This records will be lost forever! Proceed?"))
+        {
+            ajaxCall(url);
+        }
     });
 
 

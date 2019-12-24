@@ -16,6 +16,8 @@ class Match extends Model
         'away_team',
         'match_date',
         'odd_type',
-        'outcome'
+        'outcome',
+        'tag',
+        'feature_type'
     ];
 }

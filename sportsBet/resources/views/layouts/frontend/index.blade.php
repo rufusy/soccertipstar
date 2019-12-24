@@ -14,7 +14,7 @@
     <meta content="" name="description">
 
     <!-- Favicons -->
-    <link href="{{ asset('frontend/img/favicon_2.png') }}" rel="icon">
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
     {{-- <link href="{{ asset('frontend/img/apple-touch-icon.png') }}" rel="apple-touch-icon"> --}}
 
     <!-- Google Fonts -->
@@ -118,9 +118,6 @@
 
 <!-- Contact Form JavaScript File -->
 <script src="{{ asset('frontend/contactform/contactform.js') }}"></script>
-
-{{-- <script src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script> 
-<script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>  --}}
 
 @yield('javascript');
 

@@ -20,7 +20,8 @@
     use App\Match;
     use App\Team;
     use App\Odd;
-   
+  
+ 
     /**
      *  Class contain functions for admin
      *  @category   Class
@@ -200,6 +201,24 @@
             {
                 return response()->json(['errors'=>'Match not deleted']);
             } 
+        }
+
+
+        /**
+         * deleteSelected
+         *
+         * @param  mixed $request
+         *
+         * @return void
+         */
+        public function 
+        deleteSelected(Request $request)
+        {
+            foreach($request->matches as $matchId)
+            {
+                Match::find($matchId)->delete();
+            }
+            return response()->json(['success'=>'Matches deleted']);
         }
     }
 
