@@ -64,26 +64,6 @@
                     <i class="fa fa-bar-chart"></i> <span>Plans</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-lock"></i> <span>Roles and Permissions</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="#">
-                            <i class=""></i> <span>Permissions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class=""></i> <span>Roles</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
