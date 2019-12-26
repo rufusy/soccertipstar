@@ -78,15 +78,12 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::post('admin/matches/store', 'Admin\MatchController@store')->name('matches.store');
         Route::post('admin/matches/delete', 'Admin\MatchController@delete')->name('matches.delete');
         Route::post('admin/matches/delete-selected', 'Admin\MatchController@deleteSelected')->name('matches.deleteSelected');
+        Route::post('admin/matches/make-supersingle', 'Admin\MatchController@makeSupersingle')->name('matches.makeSupersingle');
 
         Route::get('admin/multibets', 'Admin\MultibetController@index')->name('multibets.index');
         Route::post('admin/multibets/store', 'Admin\MultibetController@store')->name('multibet.store');
         Route::post('admin/multibets/delete', 'Admin\MultibetController@delete')->name('multibet.delete');
         Route::post('admin/multibets/delete-selected', 'Admin\MultibetController@deleteSelected')->name('multibet.deleteSelected');
-
-        Route::get('admin/supersingles', 'Admin\SupersingleController@index')->name('supersingles.index');
-        Route::post('admin/supersingles/store', 'Admin\SupersingleController@store')->name('supersingle.store');
-        Route::post('admin/supersingles/delete', 'Admin\SupersingleController@delete')->name('supersingle.delete');
 
         Route::get('admin/maxstake', 'Admin\MaxstakeController@index')->name('maxstake.index');
         Route::post('admin/maxstake/store', 'Admin\MaxstakeController@store')->name('maxstake.store');
