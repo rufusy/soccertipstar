@@ -45,27 +45,37 @@
          */
         public function index()
         {
-            $siteUsers = User::all();
+            $Users = User::all();
 
             // Append the status and the roles of the users to the collection result
-            $siteUsers->map(function ($siteUser) {
-                $siteUser['status'] = $siteUser->is_active ? 'Active' : 'Inactive';
+            $Users->map(function ($User) {
+                $User['status'] = $User->is_active ? 'Active' : 'Inactive';
+
+                $User['subscription'] = $this->user_subscription() ? 'Active' : 'Expired';
+
+                if (!$User->hasRole('administrator'))
+                {
+                    $plan =  app('rinvex.subscriptions.plan')::find($User->plan);
+                    $User['plan'] = $plan->name;
+                }
+
                 $roles = Role::all();
                 $userRoles = '';
                 foreach ($roles as $role) 
                 {
-                    if ($siteUser->hasRole($role->name))
+                    if ($User->hasRole($role->name))
                     {
                         $userRoles .= $role->name.' ';
                     }   
                 }
-                $siteUser['userRoles'] = $userRoles;
-                return $siteUser;
+                $User['userRoles'] = $userRoles;
+
+                return $User;
             });
             // Return the result to jquery datatables
             if(request()->ajax())
             {
-                return datatables()->of($siteUsers)
+                return datatables()->of($Users)
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
                             $editurl = route('admin.editUser', ['user_id'=> $row->id]);
@@ -139,7 +149,6 @@
                 $validation_rules = [
                     'first_name' => 'required|string|max:255',
                     'last_name' => 'required|string|max:255',
-                    'roles' => 'required'
                 ];
             }
             else 
@@ -148,29 +157,19 @@
                     'first_name' => 'required|string|max:255',
                     'last_name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users',
-                    'roles' => 'required'
                 ];
             }
 
             $validator = Validator::make($request->all(), $validation_rules);
 
             if ($validator->fails()) 
-            {
+            {                
                 return $this->return_output('error', 'error', $validator, 'back', '422');
             }
 
             if($user_id)
             {
                 $user = User::find($user_id);
-                // Detach all roles from the user and update with new 
-                $roles = Role::all();
-                foreach ($roles as $role) 
-                {
-                    if ($user->hasRole($role->name))
-                    {
-                        $user->detachRole($role->name);
-                    }
-                }
 
                 $success_message = 'User updated successfully';
             }
@@ -195,20 +194,14 @@
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
             $user->email = $request->input('email'); 
+            $user->country = 'Kenya';
             $user->is_active = $request->input('is_active');
             $user->save();
 
-            if($request->exists('roles'))
-            {
-                $roles = $request->input('roles');
-                foreach ($roles as $role_id)
-                {   
-                    $user->attachRole($role_id);
-                }
-            }
-            
             if(!$user_id)
             {
+                $user->attachRole(Role::where('name', 'administrator')->first());
+
                 // Data to email new user
                 $new_user = [
                     'first_name' => $user->first_name,

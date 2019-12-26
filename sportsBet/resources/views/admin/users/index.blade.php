@@ -37,8 +37,11 @@
                                     <th>No</th>
                                     <th>First name</th>
                                     <th>Last name</th>
+                                    <th>Country</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Plan</th>
+                                    <th>Subscription</th>
                                     <th>Status</th>
                                     <th>Date Created</th>
                                     <th>Action</th>
@@ -147,12 +150,24 @@
                     name:'last_name'
                 },
                 {
+                    data:'country',
+                    name:'country'
+                },
+                {
                     data:'email',
                     name:'email'
                 },
                 {
                     data:'userRoles',
                     name:'userRoles'
+                },
+                {
+                    data:'plan',
+                    name:'plan'
+                },
+                {
+                    data:'subscription',
+                    name:'subscription'
                 },
                 {
                     data:'status',

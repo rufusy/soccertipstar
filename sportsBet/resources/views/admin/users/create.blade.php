@@ -46,22 +46,6 @@
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
                             </div>
                             <div class="form-group">
-                                <label>Role</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" id="inputCheckboxUser" name="roles[]" value="3"> User
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" id="inputCheckboxAdministrator" name="roles[]" value="2"> Administrator
-                                    </label>
-                                     <div id="role-div-error">
-                                        @if ($errors->has('roles'))
-                                            <label class="error">{{ $errors->first('roles') }}</label>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label>Status</label>
                                 <div class="radio">
                                     <label>
@@ -109,9 +93,6 @@
                     required: true,
                     email:true,
                     remote: "{{ url('checkUserEmailExists') }}"
-                },
-                "roles[]": {
-                    required: true
                 }
             },
             messages: {
@@ -125,17 +106,10 @@
                     required: 'The email field is required.',
                     email: 'The email must be a valid email address.',
                     remote: 'The email has already been taken.'
-                },
-                "roles[]": {
-                    required: 'The role field is required.'
                 }
             },
             errorPlacement: function(error, element) {
-                if(element.attr("name") == "roles[]") {
-                    error.appendTo("#role-div-error");
-                }else {
-                    error.insertAfter(element);
-                }
+                error.insertAfter(element);
             }
         });
     });

@@ -53,24 +53,6 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Role</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" id="inputCheckboxUser" name="roles[]" value="3" 
-                                            @if($user->hasRole(['user'])) checked @endif> User
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" id="inputCheckboxAdministrator" name="roles[]" value="2"
-                                        @if($user->hasRole(['administrator'])) checked @endif> Administrator
-                                    </label>
-                                     <div id="role-div-error">
-                                        @if ($errors->has('roles'))
-                                            <label class="error">{{ $errors->first('roles') }}</label>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label>Status</label>
                                 <div class="radio">
                                     <label>
@@ -113,9 +95,6 @@
                 },
                 last_name: {
                     required: true
-                },
-                "roles[]": {
-                    required: true
                 }
             },
             messages: {
@@ -124,17 +103,10 @@
                 },
                 last_name: {
                     required: 'The last name field is required.'
-                },
-                "roles[]": {
-                    required: 'The role field is required.'
                 }
             },
             errorPlacement: function(error, element) {
-                if(element.attr("name") == "roles[]") {
-                    error.appendTo("#role-div-error");
-                }else {
-                    error.insertAfter(element);
-                }
+                error.insertAfter(element);
             }
         });
     });
