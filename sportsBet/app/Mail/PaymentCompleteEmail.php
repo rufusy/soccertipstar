@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
 
-class PaymentCompleteEmail extends Mailable implements ShouldQueue
+class PaymentCompleteEmail extends Mailable 
 {
     use Queueable, SerializesModels;
 
@@ -50,7 +50,6 @@ class PaymentCompleteEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        sleep(10);
 
         return $this->subject($this->subject)
                     ->from($this->orders_email)

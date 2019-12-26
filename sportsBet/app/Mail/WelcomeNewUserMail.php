@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 
-class WelcomeNewUserMail extends Mailable implements ShouldQueue
+class WelcomeNewUserMail extends Mailable 
 {
     use Queueable, SerializesModels;
 
@@ -40,7 +40,6 @@ class WelcomeNewUserMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        sleep(10);
 
         return $this->subject($this->subject)
                     ->from($this->support_email)
