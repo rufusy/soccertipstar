@@ -18,8 +18,12 @@ class CreateMatchesTable extends Migration
             $table->unsignedBigInteger('home_team');
             $table->unsignedBigInteger('away_team');
             $table->dateTime('match_date');
-            $table->string('odd_type',55);
-            $table->string('outcome',55);
+            $table->string('odd_type');
+            $table->string('outcome');
+            $table->string('tag');
+            $table->boolean('is_supersingle')->default(0);
+            $table->unsignedBigInteger('multibet_id')->nullable();
+            $table->unsignedBigInteger('maxstake_id')->nullable();
             $table->timestamps();
         });
     }

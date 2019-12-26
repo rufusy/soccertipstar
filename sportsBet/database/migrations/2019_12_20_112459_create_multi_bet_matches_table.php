@@ -15,6 +15,7 @@ class CreateMultiBetMatchesTable extends Migration
     {
         Schema::create('multi_bet_matches', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }

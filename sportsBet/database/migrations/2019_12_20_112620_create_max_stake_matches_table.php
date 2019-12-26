@@ -15,6 +15,7 @@ class CreateMaxStakeMatchesTable extends Migration
     {
         Schema::create('max_stake_matches', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
