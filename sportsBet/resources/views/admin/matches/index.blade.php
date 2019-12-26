@@ -25,10 +25,10 @@
                                 <a class="btn btn-primary btn-flat btn-block" href="javascript:void(0)" id="create-new-match"><i class="fa fa-plus"></i> Match</a>
                             </div>
                             <div class="col-md-1 col-sm-1 col-lg-1">
-                                <button class="btn btn-primary btn-flat btn-block" id="multibet"><i class="fa fa-plus"></i> Multibet</button>
+                                <button class="btn btn-primary btn-flat btn-block" id="supersingle"><i class="fa fa-gear"></i> Supersingle</button>
                             </div>
                             <div class="col-md-1 col-sm-1 col-lg-1">
-                                <button class="btn btn-primary btn-flat btn-block" id="supersingle"><i class="fa fa-plus"></i> Supersingle</button>
+                                <button class="btn btn-primary btn-flat btn-block" id="multibet"><i class="fa fa-plus"></i> Multibet</button>
                             </div>
                             <div class="col-md-1 col-sm-1 col-lg-1">
                                 <button class="btn btn-primary btn-flat btn-block" id="maxstake"><i class="fa fa-plus"></i> Maxstake</button>
@@ -50,6 +50,7 @@
                                     <th>Match Day</th>
                                     <th>Game</th>
                                     <th>Odd Type</th>
+                                    <th>Supersingle</th>
                                     <th>Outcome</th>
                                     <th>Tag</th>
                                     <th>Action</th>
@@ -229,6 +230,10 @@
                     name:'odd_type'
                 },
                 {
+                    data:'supersingle',
+                    name:'supersingle'
+                },
+                {
                     data:'outcome',
                     name:'outcome'
                 },
@@ -303,7 +308,7 @@
         ajaxCall(url);
     });
     $('#supersingle').click(function(){
-        var url = "{{route('supersingle.store')}}";
+        var url = "{{route('matches.makeSupersingle')}}";
         ajaxCall(url);
     });
     $('#maxstake').click(function(){

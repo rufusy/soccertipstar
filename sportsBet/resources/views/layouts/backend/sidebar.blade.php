@@ -24,12 +24,7 @@
                     <i class="fa fa-soccer-ball-o"></i> <span>Multibets</span>
                 </a>
             </li>
-             <li>
-                <a href="{{route('supersingles.index')}}">
-                    <i class="fa fa-soccer-ball-o"></i> <span>Supersingles</span>
-                </a>
-            </li>
-             <li>
+            <li>
                 <a href="{{route('maxstake.index')}}">
                     <i class="fa fa-soccer-ball-o"></i> <span>Maxstake</span>
                 </a>

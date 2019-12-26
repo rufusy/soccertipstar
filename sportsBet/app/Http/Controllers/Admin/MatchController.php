@@ -49,6 +49,8 @@
                 $awayTeam = Team::find($match->away_team);
                 $match['game'] = $homeTeam->name.' vs '.$awayTeam->name;
 
+                $match['supersingle'] = $match->is_supersingle ? 'supersingle' : '';
+
                 $odds = explode(',',$match->odd_type);
                 $oddTypeNames = '';
                 foreach($odds as $odd)
@@ -211,14 +213,41 @@
          *
          * @return void
          */
-        public function 
-        deleteSelected(Request $request)
+        public function deleteSelected(Request $request)
         {
             foreach($request->matches as $matchId)
             {
                 Match::find($matchId)->delete();
             }
             return response()->json(['success'=>'Matches deleted']);
+        }
+
+        
+        /**
+         * makeSupersingle
+         *
+         * @param  mixed $request
+         *
+         * @return void
+         */
+        public function makeSupersingle(Request $request)
+        {
+            foreach($request->matches as $matchId)
+            {
+                $match = Match::find($matchId);
+                if($match->is_supersingle === (int)1) 
+                {
+                    $match->is_supersingle = 0;
+                    $success_message = 'Supersingle removed successfully.';
+                } 
+                else 
+                {
+                    $match->is_supersingle = 1;
+                    $success_message = 'Supersingle added successfully';
+                } 
+                $match->save();
+            }
+            return response()->json(['success'=>$success_message]);
         }
     }
 
