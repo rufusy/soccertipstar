@@ -13,9 +13,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicons -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    {{-- <link href="{{ asset('frontend/img/apple-touch-icon.png') }}" rel="apple-touch-icon"> --}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
 
     <!-- Google Fonts -->
     <link

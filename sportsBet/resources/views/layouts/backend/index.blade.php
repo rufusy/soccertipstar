@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
      <!-- Favicons -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
 
     <title>{{ config('app.name') }}</title>
 
