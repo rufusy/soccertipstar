@@ -253,7 +253,7 @@
 
 @endsection
 
-@section('javascript')
+@section('subscriber_account_javascript')
 <script type="text/javascript">
     $(document).ready(function () {
 
