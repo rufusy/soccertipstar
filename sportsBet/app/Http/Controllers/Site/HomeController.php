@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -12,11 +13,13 @@ use App\Match;
 use App\Team;
 use App\Odd;
 use App\Mail\contactMessageEmail;
+use App\Http\Controllers\Admin\MultibetController;
+use App\Http\Controllers\Admin\MaxstakeController;
 
 
 class HomeController extends Controller
 {
-    
+     
     /**
      * prettyMatches
      *
@@ -73,24 +76,15 @@ class HomeController extends Controller
                         ->orderBy('match_date', 'asc')
                         ->get();
 
-        $premium = Match::where('tag', 'Premium')
-                        ->where('outcome', 'In progress')
-                        ->orderBy('match_date', 'asc')
-                        ->get();
-
         $played = Match::where('outcome', '!=', 'In progress')
                         ->orderBy('match_date', 'asc')
                         ->get();
 
         $freeMatches = $this->prettyMatches($free);
-        $paidMatches = $this->prettyMatches($premium);
         $playedMatches = $this->prettyMatches($played);
-
         $odds = Odd::all();
 
-        $subscription_is_active = $this->user_subscription();
-       
-        return view('site.home', compact('freeMatches', 'paidMatches', 'playedMatches', 'odds', 'subscription_is_active'));
+        return view('site.freeTips', compact('freeMatches', 'playedMatches', 'odds'));
     }
 
 
@@ -112,7 +106,6 @@ class HomeController extends Controller
     }
 
  
-
     /**
      * sendMessage
      *

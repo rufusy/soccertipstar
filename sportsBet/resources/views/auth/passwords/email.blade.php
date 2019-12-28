@@ -5,13 +5,13 @@
     <div class="container">
         <div class="row" style="margin-top:40px;">
             <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4 col-xs-12">
-                <div style="padding:20px;">
-                   @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                @if (session('status'))
+                    <div class="bg-info info-discalaimer">
+                        <p>
                             {{ session('status') }}
-                        </div>
-                    @endif
-                </div>
+                        </p>
+                    </div>
+                @endif
                 <form id="signin-form" class="email-form"method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <div class="form-group">

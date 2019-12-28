@@ -12,10 +12,8 @@
 */
 
 
-
 Route::get('/', 'Site\HomeController@index')->name('home');
 Route::post('sendMessage','Site\HomeController@sendMessage')->name('sendMessage');
-Route::get('getPlans', 'Site\HomeController@getPlans')->name('getPlans');
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
@@ -31,12 +29,16 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logOut');
 
 Route::group(['middleware' => ['auth','verified']], function(){
 
+    Route::get('paid-tips', 'Site\PremiumTipsController@premiumTips')->name('paidTips');
+    Route::get('multibets', 'Site\PremiumTipsController@getMultibets')->name('multibets');
+    Route::get('maxstakes', 'Site\PremiumTipsController@getMaxstakes')->name('maxstakes');
+    Route::get('getPlans', 'Site\HomeController@getPlans')->name('getPlans');
+
     Route::get('account', 'Site\AccountController@index')->name('account.index');
     Route::post('account/update-profile', 'Site\AccountController@updateProfile')->name('account.updateProfile');
     Route::post('account/update-password', 'Site\AccountController@updatePassword')->name('account.updatePassword');
     Route::post('account/make-payment', 'Site\AccountController@makePayment')->name('account.makePayment');
     Route::post('account/delete', 'Site\AccountController@delete')->name('account.delete');
-
 
     Route::group(['middleware' => ['role:administrator']], function() {
 

@@ -23,7 +23,13 @@
 
     class MaxstakeController
     {
-        public function index()
+
+        /**
+         * MaxstakeMatches
+         *
+         * @return void
+         */
+        public static function MaxstakeMatches()
         {
             $matches = Match::whereNotNull('maxstake_id')->get();
 
@@ -52,8 +58,19 @@
                 return $match;
             });
 
-          
+            return $matches; 
+        }
 
+        /**
+         * index
+         *
+         * @return void
+         */
+        public function index()
+        {
+           
+            $matches = self::MaxstakeMatches();
+            
             // Return the result to jquery datatables
             if(request()->ajax())
             {

@@ -7,7 +7,7 @@
         <div class="test-overly"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <div class="wellcome-text">
                         <div class="well-text text-center">
                             <h2>Welcome to soccertipstar</h2>
@@ -28,88 +28,34 @@
 <div id="tips" class="tips-area area-padding">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="section-headline text-center">
                     <h2>Tips Analysis</h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="container">
                     <div class="row">
-                        <!--- Free Tips -->
-                        <div class="col-md-12">
-                            <h4 class="sec-head ">Free Tips</h4>
-                            <table class="table table-responsive table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th class="">Match</th>
-                                        <th class="">Odd(s)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($freeMatches as $freeMatch)
-                                    <tr>
-                                        <td class="">{{ $freeMatch->match_date }}</td>
-                                        <td class="">{{ $freeMatch->game }}</td>
-                                        <td class="">{{ $freeMatch->odd_type }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- End Free Tips -->
-
-                        <!--- Premium Tips -->
-                        <div class="col-md-12" style="padding-top: 10px;">
-                            <h4 class="sec-head ">Premium Tips</h4>
-                            @guest
-                            <div class="p-3 mb-2 bg-info text-center" style="padding-top: 20px; padding-bottom: 20px;">
+                        @guest
+                            <div class="p-3 mb-2 bg-info text-center" style="padding-top: 20px; padding-bottom: 20px; marging-bottom: 20px;">
                                 <h4>Subscribe to get our premium betting tips.</h4>
                             </div>
-                            @else
-                            @if($subscription_is_active)
-                            <table class="table table-responsive table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th class="">Match</th>
-                                        <th class="">Odd(s)</th>
-                                        <th class="">Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($paidMatches as $paidMatch)
-                                    <tr>
-                                        <td class="">{{ $paidMatch->match_date }}</td>
-                                        <td class="">{{ $paidMatch->game }}</td>
-                                        <td class="">{{ $paidMatch->odd_type }}</td>
-                                        <td class="">{{ $paidMatch->outcome }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            @else
-                            <div class="p-3 mb-2 bg-warning text-center"
-                                style="padding-top: 20px; padding-bottom: 20px;">
-                                <h4>Your subscription has expired :( </h4>
-                            </div>
-                            @endif
-                            @endguest
-                        </div>
-                        <!-- End Premium Tips -->
+                        @endguest
+
+                        @yield('free_tips')
+                        @yield('paid_tips')
 
                         <!--- Previous Tips -->
-                        <div class="col-md-12" style="padding-top: 10px;">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="margin-top: 50px;">
                             <h4 class="sec-head ">Previous Tips</h4>
                             <table class="table table-responsive table-striped">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
                                         <th class="">Match</th>
-                                        <th class="">Odd(s)</th>
+                                        <th class="">Market</th>
                                         <th class="">Result</th>
                                     </tr>
                                 </thead>
@@ -119,7 +65,7 @@
                                         <td class="">{{ $playedMatch->match_date }}</td>
                                         <td class="">{{ $playedMatch->game }}</td>
                                         <td class="">{{ $playedMatch->odd_type }}</td>
-                                        <td class="">{{ $playedMatch->outcome }}</td>
+                                        <td @if($playedMatch->outcome == 'Won') class="text-success" @else class="text-danger" @endif>{{ $playedMatch->outcome }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -151,7 +97,7 @@
                     <h3>basic <br /> <span>$8 / 7 DAYS</span></h3>
                     <ol>
                         <li class="check">Full access to our predictions</li>
-                        <li class="check">Five + Multibets daily</li>
+                        <li class="check">5+ Multibets daily</li>
                         <li class="check">2+ MAX stake odd</li>
                         <li class="check">Super singles</li>
                         <li class="check">24/7 support </li>
@@ -166,7 +112,7 @@
                     <h3>standard <br /> <span>$14 / 14 DAYS</span></h3>
                     <ol>
                         <li class="check">Full access to our predictions</li>
-                        <li class="check">Five + Multibets daily</li>
+                        <li class="check">5+ Multibets daily</li>
                         <li class="check">2+ MAX stake odd</li>
                         <li class="check">Super singles</li>
                         <li class="check">24/7 support </li>
@@ -180,7 +126,7 @@
                     <h3>premium <br /> <span>$19 / 30 DAYS</span></h3>
                     <ol>
                         <li class="check">Full access to our predictions</li>
-                        <li class="check">Five + Multibets daily</li>
+                        <li class="check">5+ Multibets daily</li>
                         <li class="check">2+ MAX stake odd</li>
                         <li class="check">Super singles</li>
                         <li class="check">24/7 support </li>
@@ -334,14 +280,19 @@
 <!-- End About area -->
 @endsection
 
-
-@section('javascript')
+@section('register_javascript')
 <script type="text/javascript">
+
     $(document).ready(function () {
+
         $('.signup-button').click(function () {
             window.location.href = "{{ route('register') }}";
-        })
+        })   
     });
 
 </script>
-@endsection
+@endsection 
+
+
+
+

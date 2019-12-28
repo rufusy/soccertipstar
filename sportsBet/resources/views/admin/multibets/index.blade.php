@@ -22,7 +22,7 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="row">
-                            <div class="col-md-1 col-sm-1 col-lg-1">
+                            <div class="col-md-2 col-sm-2 col-lg-2">
                                 <button class="btn btn-danger btn-flat btn-block" id="delete-multibet"><i class="fa fa-trash"></i> Multibets</button>
                             </div>
                         </div>
@@ -50,9 +50,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.box-body -->
                 </div>
+                <!-- /.box-body -->
             </div>
+        </div>
     </section>
     <!-- /.Main content -->
 </div>

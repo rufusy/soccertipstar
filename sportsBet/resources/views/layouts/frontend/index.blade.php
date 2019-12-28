@@ -35,12 +35,12 @@
     <link href="{{ asset('frontend/lib/jquery-steps/jquery.steps.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/lib/toastr/toastr.min599c.css?v4.0.2') }}" rel="stylesheet">
     <link href="{{ asset('frontend/lib/country-picker-flags/css/countrySelect.min.css') }}" rel="stylesheet">
+    <!-- Datatables-->
+    <link rel="stylesheet" href="{{ asset('backend/lib/DataTables/datatables.min.css') }}">
+    <!-- Datatables rowgroup-->
+    <link rel="stylesheet" href="{{ asset('backend/lib/DataTables/RowGroup-1.1.1/css/rowGroup.dataTables.css') }}">
     
-    {{-- <link rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css" type="text/css" />
-    <link rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css" type="text/css" />
-    --}}
-
-    
+      
     <!-- Nivo Slider Theme -->
     <link href="{{ asset('frontend/css/nivo-slider-theme.css') }}" rel="stylesheet">
 
@@ -87,6 +87,10 @@
 <script src="{{ asset('frontend/lib/card/dist/card.js') }}"></script>
 <script src="{{ asset('frontend/lib/toastr/toastr.min599c.js?v4.0.2') }}"></script>
 <script src="{{ asset('frontend/lib/country-picker-flags/js/countrySelect.min.js') }}"></script>
+<!-- Datatables-->
+<script src="{{ asset('backend/lib/DataTables/datatables.min.js') }}"></script>
+<!-- Datatables rowgroup-->
+<script src="{{ asset('backend/lib/DataTables/RowGroup-1.1.1/js/dataTables.rowGroup.min.js') }}"></script>
 
 <!-- template js file -->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
@@ -119,6 +123,7 @@
 <!-- Contact Form JavaScript File -->
 <script src="{{ asset('frontend/contactform/contactform.js') }}"></script>
 
-@yield('javascript');
+@yield('register_javascript');
+@yield('paid_tips_javascript')
 
 </html>

@@ -25,8 +25,12 @@
 
     class MultibetController
     {
-        
-        public function index()
+        /**
+         * multibetMatches
+         *
+         * @return void
+         */
+        public static function multibetMatches()
         {
             $matches = Match::whereNotNull('multibet_id')->get();
 
@@ -55,7 +59,18 @@
                 return $match;
             });
 
-          
+            return $matches;
+        }
+
+
+        /**
+         * index
+         *
+         * @return void
+         */
+        public function index()
+        {
+            $matches = self::multibetMatches();
 
             // Return the result to jquery datatables
             if(request()->ajax())

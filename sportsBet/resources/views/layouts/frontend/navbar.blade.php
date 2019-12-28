@@ -33,6 +33,17 @@
                                 <li>
                                     <a class="page-scroll" href="{{ route('home') }}#pricing">Pricing</a>
                                 </li>
+                                @guest
+                                @else
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown"> Tips </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ route('home') }}">Free Tips</a></li>
+                                            <li><a href="{{ route('paidTips') }}">Paid Tips</a></li>
+                                        </ul>
+                                    </li>
+                                @endguest
                                 <li>
                                     <a class="page-scroll" href="https://blog.soccertipstar.com">Blog</a>
                                 </li> 
@@ -49,7 +60,6 @@
                                         @guest
                                             <li><a href="{{ route('login') }}">Login</a></li>
                                             <li><a href="{{ route('register') }}">Register</a></li>
-                                            
                                         @else
                                             @if (Auth::user()->hasRole('administrator'))
                                                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
