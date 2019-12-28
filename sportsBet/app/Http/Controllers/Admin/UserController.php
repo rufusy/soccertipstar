@@ -55,7 +55,8 @@
 
                 if (!$User->hasRole('administrator'))
                 {
-                    $plan =  app('rinvex.subscriptions.plan')::find($User->plan);
+                    $subscription =  app('rinvex.subscriptions.plan_subscription')::where('user_id', $User->id)->first();
+                    $plan =  app('rinvex.subscriptions.plan')::find($subscription->plan_id);
                     $User['plan'] = $plan->name;
                 }
 
