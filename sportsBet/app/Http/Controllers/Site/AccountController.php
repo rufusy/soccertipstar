@@ -213,6 +213,9 @@
             {
                 app('rinvex.subscriptions.plan_subscription')::where('user_id', $user->id)->delete();
                 $user->newSubscription('main', $plan);
+
+                $purchase_date = Carbon::now();
+                $purchase_date = $purchase_date->toDateTimeString();
                 
                 $order_info = [
                     'subject' => 'Payment to soccertipstar',
@@ -224,6 +227,7 @@
                     'item_name' => $itemName,
                     'item_price' => $itemPrice,
                     'currency' => $currency,
+                    'purchase_date' => $purchase_date
                 ];
 
                 Mail::send(new PaymentCompleteEmail($order_info));

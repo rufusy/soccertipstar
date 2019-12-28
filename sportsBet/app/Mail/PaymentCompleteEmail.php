@@ -23,6 +23,7 @@ class PaymentCompleteEmail extends Mailable
     public $item_price;
     public $currency;
     public $orders_email;
+    public $purchase_date;
 
     /**
      * Create a new message instance.
@@ -40,6 +41,7 @@ class PaymentCompleteEmail extends Mailable
         $this->item_name = $order_info['item_name'];
         $this->item_price = $order_info['item_price'];
         $this->currency = $order_info['currency'];
+        $this->purchase_date = $order_info['purchase_date'];
         $this->orders_email = env('ORDERS_EMAIL');
     }
 
