@@ -12,6 +12,8 @@ use Session;
 use Redirect;
 use Carbon\Carbon;
 
+use App\User;
+
 
 class Controller extends BaseController
 {
@@ -70,17 +72,17 @@ class Controller extends BaseController
      *
      * @return void
      */
-    public function user_subscription()
+    public function user_subscription($user_id)
     {
         /**
          * Users registered on the website always have an associated subscription.
          * We check whether their subscription is still active or not.
          * If subscription is active they can view premium tips.
          */
-        $user = auth()->user();
+        $user = User::find($user_id);
         if($user)
         {
-            if (Auth::user()->hasRole('administrator'))
+            if ($user->hasRole('administrator'))
                 $subscription_is_active = true;
             else{
                 $subscription = app('rinvex.subscriptions.plan_subscription')::where('user_id', $user->id)->first();

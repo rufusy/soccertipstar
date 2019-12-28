@@ -51,7 +51,7 @@
             $Users->map(function ($User) {
                 $User['status'] = $User->is_active ? 'Active' : 'Inactive';
 
-                $User['subscription'] = $this->user_subscription() ? 'Active' : 'Expired';
+                $User['subscription'] = $this->user_subscription($User->id) ? 'Active' : 'Expired';
 
                 if (!$User->hasRole('administrator'))
                 {

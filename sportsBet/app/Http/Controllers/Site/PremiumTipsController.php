@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Admin\MultibetController;
 use App\Http\Controllers\Admin\MaxstakeController;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Match;
 
@@ -37,7 +39,9 @@ class PremiumTipsController extends HomeController
         $playedMatches = $this->prettyMatches($played);
 
 
-        $subscription_is_active = $this->user_subscription();
+        // check if subscription is active
+        $user = Auth::user();
+        $subscription_is_active = $this->user_subscription($user->id);
 
        return view('site.paidTips', compact('paidMatches', 'subscription_is_active', 'supersingleMatches', 'playedMatches')); 
     }

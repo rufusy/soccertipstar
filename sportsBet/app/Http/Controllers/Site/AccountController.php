@@ -69,7 +69,8 @@
             }
 
             // check if subscription is active
-            $subscription_is_active = $this->user_subscription();
+            $user = Auth::user();
+            $subscription_is_active = $this->user_subscription($user->id);
 
 
             $user = [
