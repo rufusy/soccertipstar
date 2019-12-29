@@ -121,8 +121,6 @@
 <!-- Contact Form JavaScript File -->
 <script src="{{ asset('frontend/contactform/contactform.js') }}"></script>
 
-@yield('register_javascript');
-@yield('subscriber_account_javascript');
-@yield('paid_tips_javascript');
+@yield('javascript');
 
 </html>

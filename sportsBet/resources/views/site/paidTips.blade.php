@@ -112,7 +112,7 @@
 @endsection
 
 
-@section('paid_tips_javascript')
+@section('javascript')
 <script type="text/javascript">
 
     $(document).ready(function () {

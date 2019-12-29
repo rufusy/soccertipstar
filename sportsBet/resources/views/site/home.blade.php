@@ -280,7 +280,7 @@
 <!-- End About area -->
 @endsection
 
-@section('register_javascript')
+@section('javascript')
 <script type="text/javascript">
 
     $(document).ready(function () {
