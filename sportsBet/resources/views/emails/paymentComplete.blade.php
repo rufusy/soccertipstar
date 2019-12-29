@@ -477,7 +477,7 @@
                                         <div class="f-fallback">
                                             <h1>Hi {{ $buyer_name }},</h1>
                                             <p>Thanks for your continued support. This email is the receipt for your
-                                                purchase on {{ env('APP_URL') }}. No payment is due.</p>
+                                                purchase on {{ config('app.name') }}. No payment is due.</p>
                                             <p>
                                                 This purchase was made with card ending with {{ $card_number }} under the name {{ $card_holder }}
                                             </p>

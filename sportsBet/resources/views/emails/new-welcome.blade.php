@@ -475,7 +475,7 @@
                                         <div class="f-fallback">
                                             <h1>Welcome, {{ $name }},</h1>
                                             <p>
-                                                Your account has been created on {{ env('APP_URL') }}. We’re thrilled to
+                                                Your account has been created on {{ config('app.name') }}. We’re thrilled to
                                                 have you on board.
                                             </p>
                                             <!-- Action -->
