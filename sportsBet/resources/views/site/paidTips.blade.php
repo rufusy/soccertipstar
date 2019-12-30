@@ -61,7 +61,7 @@
                     If you pick <strong>multibet #1</strong> don't include games from <strong>multibet #2</strong>.
                 </p>
             </div>
-            <table id="premium-multibets-table" class="table table-responsive table-striped">
+            <table id="premium-multibets-table" class="table table-striped ">
                 <thead>
                     <tr role="row">
                         <th>Multibet Name</th>
@@ -86,7 +86,7 @@
                     If you pick <strong>maxstake #1</strong> don't include games from <strong>maxstake #2</strong>.
                 </p>
             </div>
-            <table id="premium-maxstake-table" class="table table-responsive table-striped">
+            <table id="premium-maxstake-table" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Maxstake Name</th>
@@ -134,8 +134,8 @@
             rowGroup: {
                 dataSrc: dataSrcName
             },
-            scrollY:"400px",
-            scrollCollapse: true,
+            // scrollY:"500px",
+            // scrollCollapse: true,
             searching: false, 
             paging: false, 
             columns: [

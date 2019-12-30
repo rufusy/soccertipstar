@@ -253,7 +253,7 @@
 
 @endsection
 
-@section('subscriber_account_javascript')
+@section('javascript')
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -263,7 +263,6 @@
             type: "get",
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $.each(data, function (index, data) {
                     $("#plan").append($("<option></option>").attr("value", data.id).text(
                         data.name));

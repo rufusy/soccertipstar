@@ -39,8 +39,8 @@
                                         <a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown"> Tips </a>
                                         <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ route('paidTips') }}">Premium Tips</a></li>
                                             <li><a href="{{ route('home') }}">Free Tips</a></li>
-                                            <li><a href="{{ route('paidTips') }}">Paid Tips</a></li>
                                         </ul>
                                     </li>
                                 @endguest
